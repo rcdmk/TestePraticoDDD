@@ -1,0 +1,72 @@
+﻿@model IEnumerable<TestePratico.Web.ViewModels.PessoaViewModel>
+
+@{
+	ViewBag.Title = "Pessoas";
+}
+
+<h2>Index</h2>
+
+<p>
+	@Html.ActionLink("Criar", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Nome)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.DataNascimento)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.DDD)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Telefone)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Email)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.IdUF)
+		</th>
+		<th></th>
+	</tr>
+
+	@if (Model.Count() > 0)
+	{
+		foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DataNascimento)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DDD)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Telefone)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.UF.Nome)
+				</td>
+				<td>
+					@Html.ActionLink("Editar", "Edit", new { id = item.IdPessoa }) |
+					@Html.ActionLink("Detalhes", "Details", new { id = item.IdPessoa }) |
+					@Html.ActionLink("Excluir", "Delete", new { id = item.IdPessoa })
+				</td>
+			</tr>
+		}
+	}
+	else
+	{
+		<tr>
+			<td colspan="7" class="text-muted text-center">Nenhum registro cadastrado.</td>
+		</tr>
+	}
+</table>

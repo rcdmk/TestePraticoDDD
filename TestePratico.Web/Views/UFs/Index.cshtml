@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TestePratico.Web.ViewModels.UFViewModel>
+
+@{
+	ViewBag.Title = "UFs";
+}
+
+<h2>UFs</h2>
+
+<p>
+	@Html.ActionLink("Criar", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Nome)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.NumPessoas)
+		</th>
+		<th></th>
+	</tr>
+
+	@if (Model.Count() > 0)
+	{
+		foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NumPessoas)
+				</td>
+				<td>
+					@Html.ActionLink("Editar", "Edit", new { id = item.IdUF }) |
+					@Html.ActionLink("Detailhes", "Details", new { id = item.IdUF }) |
+					@Html.ActionLink("Excluir", "Delete", new { id = item.IdUF })
+				</td>
+			</tr>
+		}
+	}
+	else
+	{
+		<tr>
+			<td colspan="7" class="text-muted text-center">Nenhum registro cadastrado.</td>
+		</tr>
+	}
+
+
+</table>
