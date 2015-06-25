@@ -4,17 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using TestePratico.Application.Interfaces;
 using TestePratico.Domain.Entities;
 using TestePratico.Web.ViewModels;
+using TestePratico.Web.WCF.UFAppService;
 
 namespace TestePratico.Web.Controllers
 {
     public class UFsController : Controller
     {
- 		private readonly IUFAppService ufApp;
+		private readonly IAppServiceBaseOf_UF ufApp;
 
-		public UFsController(IUFAppService ufApp)
+		public UFsController(IAppServiceBaseOf_UF ufApp)
 		{
 			this.ufApp = ufApp;
 		}
@@ -60,15 +60,13 @@ namespace TestePratico.Web.Controllers
 
 				if (result.IsValid)
 				{
-					ufApp.SaveChanges();
-
 					return RedirectToAction("Index");
 				}
 				else
 				{
 					foreach(var error in result.Errors)
 					{
-						ModelState.AddModelError("", error);
+						ModelState.AddModelError(error.Field, error.Message);
 					}
 				}
 			}
@@ -103,15 +101,13 @@ namespace TestePratico.Web.Controllers
 
 				if (result.IsValid)
 				{
-					ufApp.SaveChanges();
-
 					return RedirectToAction("Index");
 				}
 				else
 				{
 					foreach (var error in result.Errors)
 					{
-						ModelState.AddModelError("", error);
+						ModelState.AddModelError(error.Field, error.Message);
 					}
 				}
 			}
@@ -147,14 +143,13 @@ namespace TestePratico.Web.Controllers
 			var result = ufApp.Remove(uf);
 			if (result.IsValid)
 			{
-				ufApp.SaveChanges();
 				return RedirectToAction("Index");
 			}
 			else
 			{
 				foreach (var error in result.Errors)
 				{
-					ModelState.AddModelError("", error);
+					ModelState.AddModelError(error.Field, error.Message);
 				}
 			}
 
@@ -163,9 +158,14 @@ namespace TestePratico.Web.Controllers
 			return RedirectToAction("Delete", new { id = id, uniqueUri = Request.RequestContext.RouteData.Values["uniqueUri"] });
 		}
 
+
+		#region helpers
+
 		UFViewModel getViewModelById(int id)
 		{
 			return Mapper.Map<UFViewModel>(ufApp.GetById(id));
 		}
+
+		#endregion
 	}
 }

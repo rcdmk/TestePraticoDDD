@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TestePratico.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TestePratico.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TestePratico.Services.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TestePratico.Services.App_Start.NinjectWebCommon), "Stop")]
 
-namespace TestePratico.Web.App_Start
+namespace TestePratico.Services.App_Start
 {
     using System;
     using System.Web;
@@ -11,7 +11,6 @@ namespace TestePratico.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
 	using TestePratico.Commom.Ninject;
-	using TestePratico.Commom.Ninject.Modules;
 
     public static class NinjectWebCommon 
     {
@@ -64,7 +63,6 @@ namespace TestePratico.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 			kernel.Load(ModuleHelper.GetModules());
-			kernel.Load(new ServicesNinjectModule());
         }        
     }
 }

@@ -4,36 +4,36 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using TestePratico.Application;
 using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces;
 using TestePratico.Web.ViewModels;
-using TestePratico.Application.Interfaces;
+using TestePratico.Web.WCF.PessoaAppService;
+using TestePratico.Web.WCF.UFAppService;
 
 namespace TestePratico.Web.Controllers
 {
-    public class PessoasController : Controller
-    {
-		private readonly IPessoaAppService pessoaService;
-		private readonly IUFAppService ufService;
+	public class PessoasController : Controller
+	{
+		private readonly IAppServiceBaseOf_Pessoa pessoaService;
+		private readonly IAppServiceBaseOf_UF ufService;
 
-		public PessoasController(IPessoaAppService pessoaService, IUFAppService ufService)
+		public PessoasController(IAppServiceBaseOf_Pessoa pessoaService, IAppServiceBaseOf_UF ufService)
 		{
 			this.pessoaService = pessoaService;
 			this.ufService = ufService;
 		}
 
-        // GET: Pessoas
-        public ActionResult Index()
-        {
+		// GET: Pessoas
+		public ActionResult Index()
+		{
 			var pessoas = Mapper.Map<IEnumerable<PessoaViewModel>>(pessoaService.GetAll());
 
 			return View(pessoas);
-        }
+		}
 
-        // GET: Pessoas/Details/5
-        public ActionResult Details(int id)
-        {
+		// GET: Pessoas/Details/5
+		public ActionResult Details(int id)
+		{
 			var pessoa = getViewModelById(id);
 
 			if (pessoa != null)
@@ -46,34 +46,43 @@ namespace TestePratico.Web.Controllers
 			}
 		}
 
-        // GET: Pessoas/Create
-        public ActionResult Create()
-        {
+		// GET: Pessoas/Create
+		public ActionResult Create()
+		{
 			ViewBag.IdUF = getUFList();
 			return View();
-        }
+		}
 
-        // POST: Pessoas/Create
-        [HttpPost]
+		// POST: Pessoas/Create
+		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public ActionResult Create(PessoaViewModel pessoa)
-        {
+		public ActionResult Create(PessoaViewModel pessoa)
+		{
 			if (ModelState.IsValid)
 			{
 				var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
-				pessoaService.Add(pessoaDomain);
-				pessoaService.SaveChanges();
+				var result = pessoaService.Add(pessoaDomain);
 
-				return RedirectToAction("Index");
+				if (result.IsValid)
+				{
+					return RedirectToAction("Index");
+				}
+				else
+				{
+					foreach (var erro in result.Errors)
+					{
+						ModelState.AddModelError(erro.Field, erro.Message);
+					}
+				}
 			}
 
 			ViewBag.IdUF = getUFList();
 			return View(pessoa);
-        }
+		}
 
-        // GET: Pessoas/Edit/5
-        public ActionResult Edit(int id)
-        {
+		// GET: Pessoas/Edit/5
+		public ActionResult Edit(int id)
+		{
 			var pessoa = getViewModelById(id);
 			ViewBag.IdUF = getUFList(pessoa.IdUF);
 
@@ -88,31 +97,42 @@ namespace TestePratico.Web.Controllers
 			}
 		}
 
-        // POST: Pessoas/Edit/5
-        [HttpPost]
+		// POST: Pessoas/Edit/5
+		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(PessoaViewModel pessoa)
-        {
+		{
 			if (ModelState.IsValid)
 			{
 				var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
-				pessoaService.Update(pessoaDomain);
-				pessoaService.SaveChanges();
+				var result = pessoaService.Update(pessoaDomain);
 
-				return RedirectToAction("Index");
+				if (result.IsValid)
+				{
+					return RedirectToAction("Index");
+				}
+				else
+				{
+					foreach (var erro in result.Errors)
+					{
+						ModelState.AddModelError(erro.Field, erro.Message);
+					}
+				}
 			}
 
 			ViewBag.IdUF = getUFList(pessoa.IdUF);
 			return View(pessoa);
 		}
 
-        // GET: Pessoas/Delete/5
-        public ActionResult Delete(int id)
-        {
+		// GET: Pessoas/Delete/5
+		public ActionResult Delete(int id)
+		{
 			var pessoa = getViewModelById(id);
 
 			if (pessoa != null)
 			{
+				ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
+
 				return View(pessoa);
 			}
 			else
@@ -121,18 +141,31 @@ namespace TestePratico.Web.Controllers
 			}
 		}
 
-        // POST: Pessoas/Delete/5
-        [HttpPost]
+		// POST: Pessoas/Delete/5
+		[HttpPost]
 		[ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(int id)
-        {
+		{
 			var pessoa = pessoaService.GetById(id);
 
-			pessoaService.Remove(pessoa);
-			pessoaService.SaveChanges();
+			var result = pessoaService.Remove(pessoa);
 
-			return RedirectToAction("Index");
+			if (result.IsValid)
+			{
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				foreach (var erro in result.Errors)
+				{
+					ModelState.AddModelError(erro.Field, erro.Message);
+				}
+			}
+
+			TempData["ModelState"] = ModelState;
+
+			return RedirectToAction("Delete", new { id = id });
 		}
 
 		#region helpers

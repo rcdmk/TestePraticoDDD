@@ -27,7 +27,7 @@ namespace TestePratico.Domain.Services
 			if (obj.Pessoas.Count > 0)
 			{
 				result = new ValidationResult();
-				result.Add("Esta UF não pode ser excluída porque tem pessoas associadas a ela.");
+				result.Add("", "Esta UF não pode ser excluída porque tem pessoas associadas a ela.");
 			}
 			else
 			{

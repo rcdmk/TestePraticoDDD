@@ -52,6 +52,7 @@
     <Compile Include="Services\PessoaService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\UFService.cs" />
+    <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
     <Compile Include="Validation\Validator.cs" />

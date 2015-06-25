@@ -32,7 +32,7 @@ namespace TestePratico.Domain.Validation
 
 			foreach (var rule in rules)
 			{
-				if (!rule.Valid(entity)) result.Add(rule.ErrorMessage);
+				if (!rule.Valid(entity)) result.Add(rule.Field, rule.ErrorMessage);
 			}
 
 			return result;

@@ -8,9 +8,9 @@ namespace TestePratico.Domain.Validation
 {
 	public class ValidationResult
 	{
-		protected readonly List<string> errors;
+		protected readonly List<ValidationError> errors;
 
-		public IEnumerable<string> Errors
+		public IEnumerable<ValidationError> Errors
 		{
 			get { return errors; }
 		}
@@ -22,17 +22,19 @@ namespace TestePratico.Domain.Validation
 
 		public ValidationResult()
 		{
-			errors = new List<string>();
+			errors = new List<ValidationError>();
 		}
 
-		public void Add(string errorMessage)
+		public void Add(string field, string errorMessage)
 		{
-			errors.Add(errorMessage);
+			errors.Add(new ValidationError(field, errorMessage));
 		}
 
-		public void Remove(string errorMessage)
+		public void Remove(string field, string errorMessage)
 		{
-			if (errors.Contains(errorMessage)) errors.Remove(errorMessage);
+			var error = errors.FirstOrDefault(e => e.Field == field && e.Message == errorMessage);
+
+			if (error != null)	errors.Remove(error);
 		}
 	}
 }

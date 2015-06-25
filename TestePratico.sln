@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Web", "TestePratico.Web\TestePratico.Web.csproj", "{C881C4DD-7C9E-41B8-9AEC-43ED0E637A6B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A8C5AD3-4AF0-4713-AD76-C47023CD8952} = {3A8C5AD3-4AF0-4713-AD76-C47023CD8952}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Application", "TestePratico.Application\TestePratico.Application.csproj", "{8E34BC8E-C635-4612-B465-B2B0E89A08C1}"
 EndProject
@@ -12,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Data", "TestePratico.Data\TestePratico.Data.csproj", "{FEF15CE6-680D-45FC-AFB6-A97AE8C481E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Commom", "TestePratico.Commom\TestePratico.Commom.csproj", "{EC191D33-AB43-45C4-9AEC-B7DB8B8F8688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Services", "TestePratico.Services\TestePratico.Services.csproj", "{3A8C5AD3-4AF0-4713-AD76-C47023CD8952}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{EC191D33-AB43-45C4-9AEC-B7DB8B8F8688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC191D33-AB43-45C4-9AEC-B7DB8B8F8688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC191D33-AB43-45C4-9AEC-B7DB8B8F8688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8C5AD3-4AF0-4713-AD76-C47023CD8952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8C5AD3-4AF0-4713-AD76-C47023CD8952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8C5AD3-4AF0-4713-AD76-C47023CD8952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8C5AD3-4AF0-4713-AD76-C47023CD8952}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

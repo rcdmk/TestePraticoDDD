@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8363e015-a65f-4286-8a72-5a72ce7c0160" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60850/PessoaAppService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PessoaAppService.xsd" MetadataType="Schema" ID="765ed1b9-4ef6-4d39-a266-c38c325ed946" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?xsd=xsd3" />
+    <MetadataFile FileName="PessoaAppService1.xsd" MetadataType="Schema" ID="da816dff-80f3-48f6-8267-f5c56aba8a39" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PessoaAppService2.xsd" MetadataType="Schema" ID="0171f441-4c4d-4135-a7d6-4c7ebc0bb067" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PessoaAppService3.xsd" MetadataType="Schema" ID="8597fc27-cc57-4629-b52c-e090a90261c8" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?xsd=xsd4" />
+    <MetadataFile FileName="PessoaAppService.wsdl" MetadataType="Wsdl" ID="15ec8483-44b8-4f2f-a170-e3dc9f0f95a7" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?wsdl" />
+    <MetadataFile FileName="PessoaAppService4.xsd" MetadataType="Schema" ID="62b7bece-4b5e-4d99-96bc-42872a0e4852" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PessoaAppService.disco" MetadataType="Disco" ID="30c40b82-1702-4641-bbca-a986aa8362cd" SourceId="1" SourceUrl="http://localhost:60850/PessoaAppService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

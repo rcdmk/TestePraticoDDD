@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TestePratico.Services.PessoaAppService" CodeBehind="PessoaAppService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

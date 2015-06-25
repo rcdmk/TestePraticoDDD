@@ -11,6 +11,7 @@ namespace TestePratico.Domain.Validation
 	{
 		protected readonly ISpecification<TEntity> specification;
 
+		public string Field { get; private set; }
 		public string ErrorMessage { get; private set; }
 
 		public bool Valid(TEntity entity)
@@ -22,6 +23,7 @@ namespace TestePratico.Domain.Validation
 		{
 			this.specification = specification;
 			ErrorMessage = errorMessage;
+			Field = specification.Field;
 		}
 	}
 }
