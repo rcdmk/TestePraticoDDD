@@ -1,70 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC191D33-AB43-45C4-9AEC-B7DB8B8F8688}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestePratico.Commom</RootNamespace>
-    <AssemblyName>TestePratico.Commom</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
+    <ProjectReference Include="..\TestePratico.Application\TestePratico.Application.csproj" />
+    <ProjectReference Include="..\TestePratico.Data\TestePratico.Data.csproj" />
+    <ProjectReference Include="..\TestePratico.Domain\TestePratico.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ninject\ModuleHelper.cs" />
-    <Compile Include="Ninject\Modules\AppModule.cs" />
-    <Compile Include="Ninject\Modules\DataModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Ninject" Version="3.3.6"/>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TestePratico.Application\TestePratico.Application.csproj">
-      <Project>{8e34bc8e-c635-4612-b465-b2b0e89a08c1}</Project>
-      <Name>TestePratico.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestePratico.Data\TestePratico.Data.csproj">
-      <Project>{fef15ce6-680d-45fc-afb6-a97ae8c481e1}</Project>
-      <Name>TestePratico.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestePratico.Domain\TestePratico.Domain.csproj">
-      <Project>{45b47174-cf1a-400e-908e-4299bffedb8a}</Project>
-      <Name>TestePratico.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
