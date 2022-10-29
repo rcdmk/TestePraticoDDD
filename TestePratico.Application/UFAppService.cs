@@ -10,14 +10,19 @@ using TestePratico.Domain.Validation;
 
 namespace TestePratico.Application
 {
-	public class UFAppService : AppServiceBase<UF>, IUFAppService
-	{
-		private readonly IUFService servico;
+    public class UFAppService : AppServiceBase<UF>, IUFAppService
+    {
+        private readonly IUFService servico;
 
-		public UFAppService(IUFService servico)
-			:base(servico)
-		{
-			this.servico = servico;
-		}
-	}
+        public UFAppService(IUFService servico)
+            : base(servico)
+        {
+            this.servico = servico;
+        }
+
+        public IEnumerable<UF> GetAll()
+        {
+            return servico.GetAll();
+        }
+    }
 }
