@@ -7,16 +7,16 @@ using TestePratico.Domain.Interfaces.Validation;
 
 namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
-	public class PessoaPrecisaTerUmaUFDefinidaSpec : ISpecification<Pessoa>
-	{
-		public string Field
-		{
-			get { return "IdUF"; }
-		}
+    public class PessoaPrecisaTerUmaUFDefinidaSpec : ISpecification<Pessoa>
+    {
+        public string Field
+        {
+            get { return "UFId"; }
+        }
 
-		public bool IsSatisfiedBy(Pessoa entity)
-		{
-			return entity.IdUF.HasValue;
-		}
-	}
+        public bool IsSatisfiedBy(Pessoa entity)
+        {
+            return entity.UFId.HasValue;
+        }
+    }
 }

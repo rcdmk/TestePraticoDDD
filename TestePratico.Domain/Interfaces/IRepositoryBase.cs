@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace TestePratico.Domain.Interfaces
 {
-	public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class 
-	{
-		void Add(TEntity obj);
-		
-		TEntity GetById(int id);
+    public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
+    {
+        void Add(TEntity obj);
 
-		IEnumerable<TEntity> GetAll();
+        TEntity GetById(int id);
 
-		IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filter);
+        IEnumerable<TEntity> GetAll();
 
-		void Update(TEntity obj);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filter);
 
-		void Remove(TEntity obj);
+        void Update(TEntity obj);
 
-		void SaveChanges();
-	}
+        void Remove(TEntity obj);
+
+        void SaveChanges();
+    }
 }
