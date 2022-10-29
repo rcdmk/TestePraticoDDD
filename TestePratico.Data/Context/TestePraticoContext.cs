@@ -1,45 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using TestePratico.Data.EntityConfig;
 using TestePratico.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using TestePratico.Domain.Validation;
 
 namespace TestePratico.Data.Context
 {
-	public class TestePraticoContext : DbContext
-	{
-		public TestePraticoContext()
-			:base("TestePraticoDB")
-		{
+    public class TestePraticoContext : DbContext
+    {
+        protected TestePraticoContext()
+        {
+        }
 
-		}
+        public TestePraticoContext(DbContextOptions<TestePraticoContext> options) : base(options)
+        {
+        }
 
-		public DbSet<Pessoa> Pessoas { get; set; }
-		public DbSet<UF> UF { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<UF> UF { get; set; }
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
-		{
-			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
 
-			modelBuilder.Properties()
-				.Where(p => p.Name == "Id" + p.ReflectedType.Name)
-				.Configure(p => p.IsKey());
 
-			modelBuilder.Properties<string>()
-				.Configure(p => p.HasColumnType("varchar"));
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-			modelBuilder.Properties<string>()
-				.Configure(p => p.HasMaxLength(50));
+            modelBuilder.ApplyConfiguration(new PessoaConfiguration());
+            modelBuilder.ApplyConfiguration(new UFConfiguration());
+        }
 
-			modelBuilder.Configurations.Add(new PessoaConfiguration());
-			modelBuilder.Configurations.Add(new UFConfiguration());
-		}
-	}
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            base.ConfigureConventions(configurationBuilder);
+
+            configurationBuilder.Properties<string>()
+                .AreUnicode(false)
+                .HaveMaxLength(50);
+        }
+    }
 }

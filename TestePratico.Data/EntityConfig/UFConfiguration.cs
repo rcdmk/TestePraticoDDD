@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-	public class UFConfiguration : EntityTypeConfiguration<UF>
-	{
-		public UFConfiguration()
-		{
-			HasKey(u => u.IdUF);
+    public class UFConfiguration : IEntityTypeConfiguration<UF>
+    {
+        public void Configure(EntityTypeBuilder<UF> builder)
+        {
+            builder.ToTable("UFs");
 
-			Property(u => u.Nome)
-				.IsRequired()
-				.HasMaxLength(50);
+            builder.Property(u => u.Nome)
+                .IsRequired()
+                .HasMaxLength(50);
 
-			Ignore(u => u.ValidationResult);
-			Ignore(u => u.IsValid);
-		}
-	}
+            builder.Ignore(u => u.ValidationResult);
+            builder.Ignore(u => u.IsValid);
+
+            builder.HasData(new[]{
+                new UF { UFId = 1, Nome = "SP" }
+            });
+        }
+    }
 }

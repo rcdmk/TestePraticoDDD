@@ -1,35 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-	public class PessoaConfiguration : EntityTypeConfiguration<Pessoa>
-	{
-		public PessoaConfiguration()
-		{
-			HasKey(p => p.IdPessoa);
+    public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
+    {
+        public PessoaConfiguration()
+        {
 
-			Property(p => p.Nome)
-				.IsRequired()
-				.HasMaxLength(150);
+        }
 
-			Property(p => p.DDD)
-				.HasColumnType("char")
-				.HasMaxLength(2);
+        public void Configure(EntityTypeBuilder<Pessoa> builder)
+        {
+            builder.Property(p => p.Nome)
+                .IsRequired()
+                .HasMaxLength(150);
 
-			Property(p => p.Telefone)
-				.HasMaxLength(10);
+            builder.Property(p => p.DDD)
+                .HasMaxLength(2);
 
-			Property(p => p.Email)
-				.HasMaxLength(150);
+            builder.Property(p => p.Telefone)
+                .HasMaxLength(10);
 
-			Ignore(p => p.ValidationResult);
-			Ignore(p => p.IsValid);
-		}
-	}
+            builder.Property(p => p.Email)
+                .HasMaxLength(150);
+
+            builder.Ignore(p => p.ValidationResult);
+            builder.Ignore(p => p.IsValid);
+        }
+    }
 }
