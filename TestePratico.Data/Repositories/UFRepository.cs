@@ -1,4 +1,5 @@
-﻿using TestePratico.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using TestePratico.Data.Context;
 using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces;
 
@@ -12,7 +13,12 @@ namespace TestePratico.Data.Repositories
 
         public override IEnumerable<UF> GetAll()
         {
-            return Db.Set<UF>().OrderBy(u => u.Nome).ToList();
+            return Db.Set<UF>().Select(u => new UF
+            {
+                UFId = u.UFId,
+                Nome = u.Nome,
+                NumPessoas = u.Pessoas.Count()
+            }).OrderBy(u => u.Nome).ToList();
         }
     }
 }

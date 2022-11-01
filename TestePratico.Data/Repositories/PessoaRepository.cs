@@ -1,4 +1,5 @@
-﻿using TestePratico.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using TestePratico.Data.Context;
 using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces;
 
@@ -10,9 +11,14 @@ namespace TestePratico.Data.Repositories
         {
         }
 
+        public override Pessoa GetById(int id)
+        {
+            return Db.Set<Pessoa>().Include(p => p.UF).FirstOrDefault(p => p.PessoaId == id)!;
+        }
+
         public override IEnumerable<Pessoa> GetAll()
         {
-            return Db.Set<Pessoa>().OrderBy(p => p.Nome).ToList();
+            return Db.Set<Pessoa>().Include(p => p.UF).OrderBy(p => p.Nome).ToList();
         }
     }
 }

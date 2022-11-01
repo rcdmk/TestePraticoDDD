@@ -13,12 +13,12 @@ namespace TestePratico.Data.Repositories
             Db = db;
         }
 
-        public void Add(TEntity obj)
+        public virtual void Add(TEntity obj)
         {
             Db.Set<TEntity>().Add(obj);
         }
 
-        public TEntity GetById(int id)
+        public virtual TEntity GetById(int id)
         {
             return Db.Set<TEntity>().Find(id)!;
         }
