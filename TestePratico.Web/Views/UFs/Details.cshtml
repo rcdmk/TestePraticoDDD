@@ -1,7 +1,7 @@
 ﻿@model TestePratico.Web.ViewModels.UFViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewData["Title"] = "Details";
 }
 
 <h2>Details</h2>
@@ -29,7 +29,7 @@
     </dl>
 </div>
 <p>
-	@Html.ActionLink("Editar", "Edit", new { id = Model.IdUF }, new { @class = "btn btn-default" })
-	&nbsp;
-	@Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.UFId }, new { @class = "btn btn-default" })
+    &nbsp;
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
 </p>

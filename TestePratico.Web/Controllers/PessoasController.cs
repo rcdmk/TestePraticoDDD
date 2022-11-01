@@ -1,185 +1,200 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using TestePratico.Domain.Entities;
-using TestePratico.Domain.Interfaces;
 using TestePratico.Web.ViewModels;
-using TestePratico.Web.WCF.PessoaAppService;
-using TestePratico.Web.WCF.UFAppService;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using TestePratico.Application.Interfaces;
+using System.Collections.Generic;
 
 namespace TestePratico.Web.Controllers
 {
-	public class PessoasController : Controller
-	{
-		private readonly IAppServiceBaseOf_Pessoa pessoaService;
-		private readonly IAppServiceBaseOf_UF ufService;
+    public class PessoasController : Controller
+    {
+        private readonly IPessoaAppService pessoaService;
+        private readonly IUFAppService ufService;
+        private readonly IMapper Mapper;
 
-		public PessoasController(IAppServiceBaseOf_Pessoa pessoaService, IAppServiceBaseOf_UF ufService)
-		{
-			this.pessoaService = pessoaService;
-			this.ufService = ufService;
-		}
+        public PessoasController(IMapper mapper, IPessoaAppService pessoaService, IUFAppService ufService)
+        {
+            this.Mapper = mapper;
+            this.pessoaService = pessoaService;
+            this.ufService = ufService;
+        }
 
-		// GET: Pessoas
-		public ActionResult Index()
-		{
-			var pessoas = Mapper.Map<IEnumerable<PessoaViewModel>>(pessoaService.GetAll());
+        // GET: Pessoas
+        public ActionResult Index()
+        {
+            var pessoas = Mapper.Map<IEnumerable<PessoaViewModel>>(pessoaService.GetAll());
 
-			return View(pessoas);
-		}
+            return View(pessoas);
+        }
 
-		// GET: Pessoas/Details/5
-		public ActionResult Details(int id)
-		{
-			var pessoa = getViewModelById(id);
+        // GET: Pessoas/Details/5
+        public ActionResult Details(int id)
+        {
+            var pessoa = getViewModelById(id);
 
-			if (pessoa != null)
-			{
-				return View(pessoa);
-			}
-			else
-			{
-				return new HttpNotFoundResult();
-			}
-		}
+            if (pessoa != null)
+            {
+                return View(pessoa);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-		// GET: Pessoas/Create
-		public ActionResult Create()
-		{
-			ViewBag.IdUF = getUFList();
-			return View();
-		}
+        // GET: Pessoas/Create
+        public ActionResult Create()
+        {
+            var pessoa = new PessoaViewModel();
+            pessoa.UFs = getUFList();
 
-		// POST: Pessoas/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(PessoaViewModel pessoa)
-		{
-			if (ModelState.IsValid)
-			{
-				var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
-				var result = pessoaService.Add(pessoaDomain);
+            return View(pessoa);
+        }
 
-				if (result.IsValid)
-				{
-					return RedirectToAction("Index");
-				}
-				else
-				{
-					foreach (var erro in result.Errors)
-					{
-						ModelState.AddModelError(erro.Field, erro.Message);
-					}
-				}
-			}
+        // POST: Pessoas/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PessoaViewModel pessoa)
+        {
+            Console.WriteLine("#########> {0}: {1}", ModelState.IsValid, ModelState.Aggregate("", (a, v) => a + ", " + v.Key + ": " + v.Value.RawValue?.ToString() + "=" + v.Value.Errors.Aggregate("", (a, e) => a + "," + e.ErrorMessage)));
 
-			ViewBag.IdUF = getUFList();
-			return View(pessoa);
-		}
+            if (ModelState.IsValid)
+            {
+                var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
+                var result = pessoaService.Add(pessoaDomain);
 
-		// GET: Pessoas/Edit/5
-		public ActionResult Edit(int id)
-		{
-			var pessoa = getViewModelById(id);
-			ViewBag.IdUF = getUFList(pessoa.IdUF);
+                if (result.IsValid)
+                {
+                    pessoaService.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (var erro in result.Errors)
+                    {
+                        ModelState.AddModelError(erro.Field, erro.Message);
+                    }
+                }
+            }
 
+            pessoa.UFs = getUFList();
+            return View(pessoa);
+        }
 
-			if (pessoa != null)
-			{
-				return View(pessoa);
-			}
-			else
-			{
-				return new HttpNotFoundResult();
-			}
-		}
+        // GET: Pessoas/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var pessoa = getViewModelById(id);
 
-		// POST: Pessoas/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(PessoaViewModel pessoa)
-		{
-			if (ModelState.IsValid)
-			{
-				var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
-				var result = pessoaService.Update(pessoaDomain);
+            if (pessoa != null)
+            {
+                pessoa.UFs = getUFList();
+                return View(pessoa);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-				if (result.IsValid)
-				{
-					return RedirectToAction("Index");
-				}
-				else
-				{
-					foreach (var erro in result.Errors)
-					{
-						ModelState.AddModelError(erro.Field, erro.Message);
-					}
-				}
-			}
+        // POST: Pessoas/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(PessoaViewModel pessoa)
+        {
+            if (ModelState.IsValid)
+            {
+                var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
+                var result = pessoaService.Update(pessoaDomain);
 
-			ViewBag.IdUF = getUFList(pessoa.IdUF);
-			return View(pessoa);
-		}
+                if (result.IsValid)
+                {
+                    try
+                    {
+                        pessoaService.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", ex.Message);
+                    }
+                }
+                else
+                {
+                    foreach (var erro in result.Errors)
+                    {
+                        ModelState.AddModelError(erro.Field, erro.Message);
+                    }
+                }
+            }
 
-		// GET: Pessoas/Delete/5
-		public ActionResult Delete(int id)
-		{
-			var pessoa = getViewModelById(id);
+            pessoa.UFs = getUFList();
+            return View(pessoa);
+        }
 
-			if (pessoa != null)
-			{
-				ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
+        // GET: Pessoas/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var pessoa = getViewModelById(id);
 
-				return View(pessoa);
-			}
-			else
-			{
-				return new HttpNotFoundResult();
-			}
-		}
+            if (pessoa != null)
+            {
+                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
 
-		// POST: Pessoas/Delete/5
-		[HttpPost]
-		[ActionName("Delete")]
-		[ValidateAntiForgeryToken]
-		public ActionResult DeleteConfirmed(int id)
-		{
-			var pessoa = pessoaService.GetById(id);
+                return View(pessoa);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-			var result = pessoaService.Remove(pessoa);
+        // POST: Pessoas/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var pessoa = pessoaService.GetById(id);
 
-			if (result.IsValid)
-			{
-				return RedirectToAction("Index");
-			}
-			else
-			{
-				foreach (var erro in result.Errors)
-				{
-					ModelState.AddModelError(erro.Field, erro.Message);
-				}
-			}
+            if (pessoa == null) return NotFound();
 
-			TempData["ModelState"] = ModelState;
+            var result = pessoaService.Remove(pessoa);
 
-			return RedirectToAction("Delete", new { id = id });
-		}
+            if (result.IsValid)
+            {
+                pessoaService.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var erro in result.Errors)
+                {
+                    ModelState.AddModelError(erro.Field, erro.Message);
+                }
+            }
 
-		#region helpers
+            TempData["ModelState"] = ModelState;
 
-		PessoaViewModel getViewModelById(int id)
-		{
-			return Mapper.Map<PessoaViewModel>(pessoaService.GetById(id));
-		}
+            return RedirectToAction("Delete", new { id = id });
+        }
 
-		SelectList getUFList(int? IdSelectedUF = null)
-		{
-			return new SelectList(Mapper.Map<IEnumerable<UFViewModel>>(ufService.GetAll()), "IdUF", "Nome", IdSelectedUF);
-		}
+        #region helpers
 
-		#endregion
-	}
+        PessoaViewModel getViewModelById(int id)
+        {
+            return Mapper.Map<PessoaViewModel>(pessoaService.GetById(id));
+        }
+
+        IList<SelectListItem> getUFList()
+        {
+            var ufs = ufService.GetAll();
+            return Mapper.Map<IList<SelectListItem>>(ufs);
+        }
+
+        #endregion
+    }
 }

@@ -1,33 +1,33 @@
 ﻿@model IEnumerable<TestePratico.Web.ViewModels.PessoaViewModel>
 
 @{
-	ViewBag.Title = "Pessoas";
+	ViewData["Title"] = "Pessoas";
 }
 
 <h2>Index</h2>
 
 <p>
-	@Html.ActionLink("Criar", "Create", null, new { @class = "btn btn-primary" })
+	<a asp-action="Create" class="btn btn-primary">Criar</a>
 </p>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.Nome)
+			<label asp-for="@Model.First().Nome"></label>
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.DataNascimento)
+			<label asp-for="@Model.FirstOrDefault().DataNascimento"></label>
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.DDD)
+			<label asp-for="@Model.FirstOrDefault().DDD"></label>
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Telefone)
+			<label asp-for="@Model.FirstOrDefault().Telefone"></label>
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Email)
+			<label asp-for="@Model.FirstOrDefault().Email"></label>
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.IdUF)
+			<label asp-for="@Model.FirstOrDefault().UFId"></label>
 		</th>
 		<th></th>
 	</tr>
@@ -53,12 +53,12 @@
 					@Html.DisplayFor(modelItem => item.Email)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.UF.Nome)
+					@Html.DisplayFor(modelItem => item.UF)
 				</td>
 				<td>
-					@Html.ActionLink("Editar", "Edit", new { id = item.IdPessoa }) |
-					@Html.ActionLink("Detalhes", "Details", new { id = item.IdPessoa }) |
-					@Html.ActionLink("Excluir", "Delete", new { id = item.IdPessoa })
+					<a asp-action="Edit" asp-route-id="@item.PessoaId">Editar</a> |
+					<a asp-action="Details" asp-route-id="@item.PessoaId">Detalhes</a> |
+					<a asp-action="Delete" asp-route-id="@item.PessoaId">Excluir</a>
 				</td>
 			</tr>
 		}

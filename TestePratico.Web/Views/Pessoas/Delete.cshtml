@@ -1,7 +1,7 @@
 ﻿@model TestePratico.Web.ViewModels.PessoaViewModel
 
 @{
-	ViewBag.Title = "Excluir Pessoa";
+    ViewData["Title"] = "Excluir Pessoa";
 }
 
 <h2>Excluir Pessoa</h2>
@@ -10,7 +10,7 @@
 <div>
     <h4>Dados</h4>
     <hr />
-	@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
     <dl class="dl-horizontal">
         <dt>
@@ -54,20 +54,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdUF)
+            @Html.DisplayNameFor(model => model.UFId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UF.Nome)
+            @Html.DisplayFor(model => model.UF)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
-			<input type="submit" value="Confirmar exclusão" class="btn btn-default" />
-			&nbsp;
+            <input type="submit" value="Confirmar exclusão" class="btn btn-default" />
+            &nbsp;
             @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
         </div>
     }

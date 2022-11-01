@@ -1,77 +1,11 @@
 ﻿@model TestePratico.Web.ViewModels.PessoaViewModel
 
 @{
-    ViewBag.Title = "Criar Pessoa";
+    ViewData["Title"] = "Criar Pessoa";
 }
 
 <h2>Criar Pessoa</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Dados</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DDD, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.DDD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DDD, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdUF, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IdUF, (SelectList)ViewBag.IdUF, new { @class = "form-control selectpicker" })
-                @Html.ValidationMessageFor(model => model.IdUF, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-1">
-				<input type="submit" value="Gravar" class="btn btn-default" />
-			</div>
-			<div class="col-md-1">
-				@Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
-			</div>
-		</div>
-    </div>
-}
-
-<div>
-</div>
+<form asp-controller="Pessoas" asp-action="Create" method="post">
+    @Html.Partial("_Form", Model)
+</form>
