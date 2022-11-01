@@ -30,7 +30,7 @@ namespace TestePratico.Domain.Services
 
             if (obj is IValidable)
             {
-                var validable = obj as IValidable;
+                var validable = (IValidable)obj;
 
                 if (!validable.IsValid)
                     ValidationResult = validable.ValidationResult;

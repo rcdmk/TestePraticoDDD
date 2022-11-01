@@ -9,10 +9,7 @@ namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
     public class PessoaPrecisaTerUmaUFDefinidaSpec : ISpecification<Pessoa>
     {
-        public string Field
-        {
-            get { return "UFId"; }
-        }
+        public string Field => nameof(Pessoa.UFId);
 
         public bool IsSatisfiedBy(Pessoa entity)
         {

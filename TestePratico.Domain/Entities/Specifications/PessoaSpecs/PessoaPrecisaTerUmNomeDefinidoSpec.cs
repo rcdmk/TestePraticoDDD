@@ -7,13 +7,13 @@ using TestePratico.Domain.Interfaces.Validation;
 
 namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
-	public class PessoaPrecisaTerUmNomeDefinidoSpec : ISpecification<Pessoa>
-	{
-		public string Field { get; set; }
+    public class PessoaPrecisaTerUmNomeDefinidoSpec : ISpecification<Pessoa>
+    {
+        public string Field => nameof(Pessoa.Nome);
 
-		public bool IsSatisfiedBy(Pessoa entity)
-		{
-			return !string.IsNullOrWhiteSpace(entity.Nome);
-		}
-	}
+        public bool IsSatisfiedBy(Pessoa entity)
+        {
+            return !string.IsNullOrWhiteSpace(entity.Nome);
+        }
+    }
 }

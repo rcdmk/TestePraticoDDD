@@ -18,7 +18,7 @@ namespace TestePratico.Domain.Validation
         {
             this.specification = specification;
             ErrorMessage = errorMessage;
-            Field = specification.Field;
+            Field = specification.Field ?? "";
         }
     }
 }

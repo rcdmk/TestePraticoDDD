@@ -1,4 +1,5 @@
-﻿using TestePratico.Domain.Entities.Validation;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using TestePratico.Domain.Entities.Validation;
 using TestePratico.Domain.Interfaces.Validation;
 using TestePratico.Domain.Validation;
 
@@ -9,7 +10,9 @@ namespace TestePratico.Domain.Entities
         public int UFId { get; set; }
         public string Nome { get; set; }
 
-        public virtual List<Pessoa> Pessoas { get; set; }
+        [NotMapped]
+        public virtual int NumPessoas { get; set; }
+        public virtual IList<Pessoa> Pessoas { get; set; }
 
         public ValidationResult ValidationResult { get; private set; }
 

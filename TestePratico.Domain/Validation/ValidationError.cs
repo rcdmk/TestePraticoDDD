@@ -7,7 +7,7 @@
 
         public ValidationError(string field, string message)
         {
-            Field = field;
+            Field = field ?? "";
             Message = message;
         }
     }

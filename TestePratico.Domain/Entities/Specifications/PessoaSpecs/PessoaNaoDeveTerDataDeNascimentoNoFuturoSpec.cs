@@ -9,10 +9,7 @@ namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
     public class PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec : ISpecification<Pessoa>
     {
-        public string Field
-        {
-            get { return "DataNascimento"; }
-        }
+        public string Field => nameof(Pessoa.DataNascimento);
 
         public bool IsSatisfiedBy(Pessoa entity)
         {
