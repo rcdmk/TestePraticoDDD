@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestePratico.Application.Interfaces;
+﻿using TestePratico.Application.Interfaces;
 using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces.Services;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Application
 {
@@ -18,11 +12,6 @@ namespace TestePratico.Application
             : base(servico)
         {
             this.servico = servico;
-        }
-
-        public IEnumerable<UF> GetAll()
-        {
-            return servico.GetAll();
         }
     }
 }
