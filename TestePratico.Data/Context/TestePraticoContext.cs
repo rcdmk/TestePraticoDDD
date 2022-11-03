@@ -1,14 +1,14 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TestePratico.Data.EntityConfig;
 using TestePratico.Domain.Entities;
-using Microsoft.Extensions.Configuration;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Data.Context
 {
     public class TestePraticoContext : DbContext
     {
+        public DbSet<Pessoa> Pessoas { get; set; } = null!;
+        public DbSet<UF> UF { get; set; } = null!;
+
         protected TestePraticoContext()
         {
         }
@@ -16,9 +16,6 @@ namespace TestePratico.Data.Context
         public TestePraticoContext(DbContextOptions<TestePraticoContext> options) : base(options)
         {
         }
-
-        public DbSet<Pessoa> Pessoas { get; set; }
-        public DbSet<UF> UF { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,10 +25,6 @@ namespace TestePratico.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-
             modelBuilder.ApplyConfiguration(new PessoaConfiguration());
             modelBuilder.ApplyConfiguration(new UFConfiguration());
         }
