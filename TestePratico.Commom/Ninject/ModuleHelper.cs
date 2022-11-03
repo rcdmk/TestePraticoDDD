@@ -1,4 +1,6 @@
-﻿using Ninject.Modules;
+﻿using System;
+using System.Collections.Generic;
+using Ninject.Modules;
 using TestePratico.Commom.Ninject.Modules;
 
 namespace TestePratico.Commom.Ninject

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestePratico.Services";
+
+import "google/protobuf/empty.proto";
+
+
+service Pessoas {
+    rpc GetAll(google.protobuf.Empty) returns (PessoaList);
+}
+
+
+message Pessoa {
+    int32 id = 1;
+    string nome = 2;
+    string ddd = 3;
+    string telefone = 4;
+    string email = 5;
+    string uf = 6;
+}
+
+message PessoaList {
+    repeated Pessoa data = 1;
+}

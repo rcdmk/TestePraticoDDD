@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TestePratico.Data.Context;
+﻿using TestePratico.Data.Context;
 using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces;
 

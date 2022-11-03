@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TestePratico.Services.UFAppService" CodeBehind="UFAppService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>
