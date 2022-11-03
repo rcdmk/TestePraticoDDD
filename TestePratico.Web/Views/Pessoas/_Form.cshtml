@@ -1,7 +1,5 @@
 @model TestePratico.Web.ViewModels.PessoaViewModel
 
-@Html.AntiForgeryToken()
-
 <div class="form-horizontal">
     <h4>Dados</h4>
     <hr />
@@ -58,7 +56,7 @@
 
     <div class="form-group row">
         <div class="col-md-offset-2 col-md-1">
-            <input type="submit" value="Gravar" class="btn btn-default" />
+            <input type="submit" value="Gravar" class="btn btn-secondary" />
         </div>
         <div class="col-md-1">
             <a asp-action="Index" class="btn btn-primary">Voltar</a>

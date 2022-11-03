@@ -1,0 +1,20 @@
+@model TestePratico.Web.ViewModels.UFViewModel
+
+<h4>Dados</h4>
+<hr />
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<dl class="row">
+    <dt class="col-sm-1">
+        @Html.DisplayNameFor(model => model.Nome)
+    </dt>
+    <dd class="col-sm-11">
+        @Html.DisplayFor(model => model.Nome)
+    </dd>
+
+    <dt class="col-sm-1">
+        @Html.DisplayNameFor(model => model.NumPessoas)
+    </dt>
+    <dd class="col-sm-11">
+        @Html.DisplayFor(model => model.NumPessoas)
+    </dd>
+</dl>

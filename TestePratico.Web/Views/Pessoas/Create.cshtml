@@ -7,5 +7,5 @@
 <h2>Criar Pessoa</h2>
 
 <form asp-controller="Pessoas" asp-action="Create" method="post">
-    @Html.Partial("_Form", Model)
+    <partial name="_Form" for="@Model"></partial>
 </form>

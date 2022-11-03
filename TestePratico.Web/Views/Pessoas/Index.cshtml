@@ -12,24 +12,24 @@
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			<label asp-for="@Model.First().Nome"></label>
+			@Html.DisplayNameFor(m => m.First().Nome)
 		</th>
 		<th>
-			<label asp-for="@Model.FirstOrDefault().DataNascimento"></label>
+			@Html.DisplayNameFor(m => m.First().DataNascimento)
 		</th>
 		<th>
-			<label asp-for="@Model.FirstOrDefault().DDD"></label>
+			@Html.DisplayNameFor(m => m.First().DDD)
 		</th>
 		<th>
-			<label asp-for="@Model.FirstOrDefault().Telefone"></label>
+			@Html.DisplayNameFor(m => m.First().Telefone)
 		</th>
 		<th>
-			<label asp-for="@Model.FirstOrDefault().Email"></label>
+			@Html.DisplayNameFor(m => m.First().Email)
 		</th>
 		<th>
-			<label asp-for="@Model.FirstOrDefault().UFId"></label>
+			@Html.DisplayNameFor(m => m.First().UFId)
 		</th>
-		<th></th>
+		<th class="col-2"></th>
 	</tr>
 
 	@if (Model.Count() > 0)
@@ -55,7 +55,7 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.UF)
 				</td>
-				<td>
+				<td class="text-center">
 					<a asp-action="Edit" asp-route-id="@item.PessoaId">Editar</a> |
 					<a asp-action="Details" asp-route-id="@item.PessoaId">Detalhes</a> |
 					<a asp-action="Delete" asp-route-id="@item.PessoaId">Excluir</a>

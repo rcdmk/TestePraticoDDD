@@ -7,5 +7,5 @@
 <h2>Criar UF</h2>
 
 <form asp-controller="UFs" asp-action="Create" method="post">
-    @Html.Partial("_Form", Model)
+    <partial name="_Form" for="@Model"></partial>
 </form>

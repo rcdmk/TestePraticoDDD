@@ -8,5 +8,5 @@
 
 <form asp-controller="Pessoas" asp-action="Edit" method="post">
 	<input hidden asp-for="PessoaId" />
-	@Html.Partial("_Form", Model)
+	<partial name="_Form" for="@Model"></partial>
 </form>
