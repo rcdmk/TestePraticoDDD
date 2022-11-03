@@ -19,5 +19,15 @@ namespace TestePratico.Data.Repositories
                 NumPessoas = u.Pessoas.Count()
             }).OrderBy(u => u.Nome).ToList();
         }
+
+        public override UF GetById(int id)
+        {
+            return Db.Set<UF>().Select(u => new UF
+            {
+                UFId = u.UFId,
+                Nome = u.Nome,
+                NumPessoas = u.Pessoas.Count()
+            }).First(u => u.UFId == id);
+        }
     }
 }

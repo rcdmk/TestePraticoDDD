@@ -10,31 +10,31 @@ using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Services
 {
-	public class UFService : ServiceBase<UF>, IUFService
-	{
-		private IUFRepository repository;
+    public class UFService : ServiceBase<UF>, IUFService
+    {
+        private IUFRepository repository;
 
-		public UFService(IUFRepository repository)
-			:base(repository)
-		{
-			this.repository = repository;
-		}
+        public UFService(IUFRepository repository)
+            : base(repository)
+        {
+            this.repository = repository;
+        }
 
-		public override ValidationResult Remove(UF obj)
-		{
-			ValidationResult result;
+        public override ValidationResult Remove(UF obj)
+        {
+            ValidationResult result;
 
-			if (obj.Pessoas.Count > 0)
-			{
-				result = new ValidationResult();
-				result.Add("", "Esta UF não pode ser excluída porque tem pessoas associadas a ela.");
-			}
-			else
-			{
-				result = base.Remove(obj);
-			}
+            if (obj.Pessoas.Count > 0 || obj.NumPessoas > 0)
+            {
+                result = new ValidationResult();
+                result.Add("", "Esta UF não pode ser excluída porque tem pessoas associadas a ela.");
+            }
+            else
+            {
+                result = base.Remove(obj);
+            }
 
-			return result;
-		}
-	}
+            return result;
+        }
+    }
 }

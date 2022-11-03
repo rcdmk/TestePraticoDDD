@@ -140,6 +140,7 @@ namespace TestePratico.Web.Controllers
             var uf = ufApp.GetById(id);
 
             var result = ufApp.Remove(uf);
+
             if (result.IsValid)
             {
                 ufApp.SaveChanges();
@@ -153,9 +154,8 @@ namespace TestePratico.Web.Controllers
                 }
             }
 
-            TempData["ModelState"] = ModelState;
-
-            return RedirectToAction("Delete", new { id = id, uniqueUri = Request.HttpContext.GetRouteData().Values["uniqueUri"] });
+            var viewmodel = Mapper.Map<UFViewModel>(uf);
+            return View(viewmodel);
         }
 
 
