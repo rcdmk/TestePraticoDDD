@@ -4,6 +4,14 @@ namespace TestePratico.Web.ViewModels
 {
     public class UFViewModel
     {
+        public UFViewModel() : this(0, "") { }
+
+        public UFViewModel(int uFId, string nome)
+        {
+            this.UFId = uFId;
+            this.Nome = nome;
+        }
+
         [Key]
         public int UFId { get; set; }
 

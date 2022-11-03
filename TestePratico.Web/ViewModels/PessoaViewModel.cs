@@ -7,6 +7,14 @@ namespace TestePratico.Web.ViewModels
 {
     public class PessoaViewModel
     {
+        public PessoaViewModel() : this(0, "") { }
+
+        public PessoaViewModel(int pessoaId, string nome)
+        {
+            this.PessoaId = pessoaId;
+            this.Nome = nome;
+        }
+
         [Key]
         public int PessoaId { get; set; }
 

@@ -59,8 +59,6 @@ namespace TestePratico.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PessoaViewModel pessoa)
         {
-            Console.WriteLine("#########> {0}: {1}", ModelState.IsValid, ModelState.Aggregate("", (a, v) => a + ", " + v.Key + ": " + v.Value.RawValue?.ToString() + "=" + v.Value.Errors.Aggregate("", (a, e) => a + "," + e.ErrorMessage)));
-
             if (ModelState.IsValid)
             {
                 var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
@@ -142,14 +140,10 @@ namespace TestePratico.Web.Controllers
 
             if (pessoa != null)
             {
-                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
-
                 return View(pessoa);
             }
-            else
-            {
-                return NotFound();
-            }
+
+            return NotFound();
         }
 
         // POST: Pessoas/Delete/5

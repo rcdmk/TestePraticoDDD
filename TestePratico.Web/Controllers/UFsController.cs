@@ -125,14 +125,10 @@ namespace TestePratico.Web.Controllers
 
             if (uf != null)
             {
-                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
-
                 return View(uf);
             }
-            else
-            {
-                return NotFound();
-            }
+
+            return NotFound();
         }
 
         // POST: UFs/Delete/5
