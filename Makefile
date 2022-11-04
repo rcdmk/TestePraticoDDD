@@ -2,6 +2,10 @@ STARTUP_PROJECT := TestePratico.Web
 DATA_PROJECT := TestePratico.Data
 MIGRATION_NAME :=
 
+.PHONY: echo
+echo:
+	@echo "MIGRATION_NAME: $(MIGRATION_NAME)";
+
 .PHONY: start-web
 start-web:
 	dotnet run --project ./$(STARTUP_PROJECT);
@@ -12,9 +16,7 @@ watch-web:
 
 .PHONY: add-migration
 add-migration:
-    # ifndef MIGRATION_NAME
-    #     $(error MIGRATION_NAME must be defined)
-    # endif;
+	@test -n "$(MIGRATION_NAME)" || (echo "MIGRATION_NAME must be defined" ; exit 1);
 
 	cd $(STARTUP_PROJECT) && \
 	dotnet ef migrations add "$(MIGRATION_NAME)" \
