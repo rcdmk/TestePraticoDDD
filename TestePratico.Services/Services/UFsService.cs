@@ -18,10 +18,10 @@ public class UFsService : UFs.UFsBase
         _logger = logger;
     }
 
-    public override Task<UFList> GetAll(Empty request, ServerCallContext context)
+    public override Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
     {
         var ufs = ufAppService.GetAll();
-        var result = Mapper.Map<UFList>(ufs);
+        var result = Mapper.Map<GetAllResponse>(ufs);
 
         return Task.FromResult(result);
     }

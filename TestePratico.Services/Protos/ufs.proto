@@ -2,13 +2,12 @@ syntax = "proto3";
 
 option csharp_namespace = "TestePratico.Services";
 
-import "google/protobuf/empty.proto";
-
 
 service UFs {
-    rpc GetAll(google.protobuf.Empty) returns (UFList);
+    rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }
 
+message GetAllRequest {}
 
 message UF {
     int32 id = 1;
@@ -16,6 +15,6 @@ message UF {
     int32 num_pessoas = 3;
 }
 
-message UFList {
+message GetAllResponse {
     repeated UF data = 1;
 }

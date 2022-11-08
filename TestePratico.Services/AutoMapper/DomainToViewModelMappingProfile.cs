@@ -11,7 +11,7 @@ namespace TestePratico.Services.AutoMapper
             CreateMap<IEnumerable<Domain.Entities.Pessoa>, PessoaList>().ConvertUsing<ListPessoaDomainToPessoaListConverter>();
 
             CreateMap<Domain.Entities.UF, Services.UF>();
-            CreateMap<IEnumerable<Domain.Entities.UF>, UFList>().ConvertUsing<ListUFDomainToUFListConverter>();
+            CreateMap<IEnumerable<Domain.Entities.UF>, GetAllResponse>().ConvertUsing<ListUFDomainToUFListConverter>();
         }
     }
 }
