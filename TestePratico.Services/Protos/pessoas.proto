@@ -2,13 +2,11 @@ syntax = "proto3";
 
 option csharp_namespace = "TestePratico.Services";
 
-import "google/protobuf/empty.proto";
-
-
 service Pessoas {
-    rpc GetAll(google.protobuf.Empty) returns (PessoaList);
+    rpc GetAll(GetAllPessoasRequest) returns (GetAllPessoasResponse);
 }
 
+message GetAllPessoasRequest{}
 
 message Pessoa {
     int32 id = 1;
@@ -16,9 +14,14 @@ message Pessoa {
     string ddd = 3;
     string telefone = 4;
     string email = 5;
-    string uf = 6;
+    PessoaUF uf = 6;
 }
 
-message PessoaList {
+message PessoaUF {
+    int32 id = 1;
+    string nome = 2;
+}
+
+message GetAllPessoasResponse {
     repeated Pessoa data = 1;
 }

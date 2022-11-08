@@ -6,11 +6,11 @@ using AutoMapper;
 
 namespace TestePratico.Services.AutoMapper
 {
-    public class ListUFDomainToUFListConverter : ITypeConverter<IEnumerable<Domain.Entities.UF>, Services.GetAllResponse>
+    public class ListUFDomainToGetAllUFsResponseConverter : ITypeConverter<IEnumerable<Domain.Entities.UF>, Services.GetAllUFsResponse>
     {
-        public GetAllResponse Convert(IEnumerable<Domain.Entities.UF> source, GetAllResponse destination, ResolutionContext context)
+        public GetAllUFsResponse Convert(IEnumerable<Domain.Entities.UF> source, GetAllUFsResponse destination, ResolutionContext context)
         {
-            var result = new GetAllResponse();
+            var result = new GetAllUFsResponse();
 
             // Need to use the Add method to add values rather than assign it with an '=' sign
             foreach (var item in source)

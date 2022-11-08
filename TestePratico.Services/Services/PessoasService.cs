@@ -9,8 +9,11 @@ namespace TestePratico.Services;
 public class PessoasService : Pessoas.PessoasBase
 {
     private readonly ILogger<PessoasService> _logger;
+
     private readonly IPessoaAppService pessoaAppService;
+
     private readonly IMapper Mapper;
+
     public PessoasService(ILogger<PessoasService> logger, IMapper mapper, IPessoaAppService pessoaAppService)
     {
         this.Mapper = mapper;
@@ -18,12 +21,13 @@ public class PessoasService : Pessoas.PessoasBase
         _logger = logger;
     }
 
-    public override Task<PessoaList> GetAll(Empty request, ServerCallContext context)
+    public override Task<GetAllPessoasResponse> GetAll(GetAllPessoasRequest request, ServerCallContext context)
     {
         var pessoas = pessoaAppService.GetAll();
-        var result = Mapper.Map<PessoaList>(pessoas);
+        var response = new GetAllPessoasResponse();
 
-        return Task.FromResult(result);
+        Mapper.Map(pessoas, response.Data);
+
+        return Task.FromResult(response);
     }
-
 }
