@@ -30,4 +30,17 @@ public class UFsService : UFs.UFsBase
 
         return Task.FromResult(response);
     }
+
+    public override Task<GetUFByIdResponse> GetById(GetUFByIdRequest request, ServerCallContext context)
+    {
+        var uf = ufAppService.GetById(request.Id);
+        if (uf == null) throw new RpcException(new Status(StatusCode.NotFound, "Not Found"));
+
+        var response = new GetUFByIdResponse()
+        {
+            Uf = Mapper.Map<UF>(uf)
+        };
+
+        return Task.FromResult(response);
+    }
 }

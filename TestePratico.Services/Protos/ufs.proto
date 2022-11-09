@@ -5,9 +5,14 @@ option csharp_namespace = "TestePratico.Services";
 
 service UFs {
     rpc GetAll(GetAllUFsRequest) returns (GetAllUFsResponse);
+    rpc GetById(GetUFByIdRequest) returns (GetUFByIdResponse);
 }
 
 message GetAllUFsRequest {}
+
+message GetUFByIdRequest{
+    int32 id = 1;
+}
 
 message UF {
     int32 id = 1;
@@ -17,4 +22,8 @@ message UF {
 
 message GetAllUFsResponse {
     repeated UF data = 1;
+}
+
+message GetUFByIdResponse {
+    UF uf = 1;
 }
