@@ -10,5 +10,10 @@
             Field = field ?? "";
             Message = message;
         }
+
+        public override string ToString()
+        {
+            return $"{Field}: {Message}";
+        }
     }
 }

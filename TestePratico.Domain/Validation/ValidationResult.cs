@@ -30,5 +30,14 @@
 
             if (error != null) errors.Remove(error);
         }
+
+        public override string ToString()
+        {
+            if (IsValid) return "Valid";
+
+            var errors = String.Join(", ", Errors.Select((e) => e.ToString()).ToArray());
+
+            return $"Errors: {errors}";
+        }
     }
 }
