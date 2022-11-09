@@ -43,4 +43,25 @@ public class UFsService : UFs.UFsBase
 
         return Task.FromResult(response);
     }
+
+    public override Task<CreateUFResponse> Create(CreateUFRequest request, ServerCallContext context)
+    {
+        var uf = new Domain.Entities.UF();
+        uf.Nome = request.Nome;
+
+        if (!uf.IsValid) throw new RpcException(new Status(StatusCode.InvalidArgument, uf.ValidationResult!.ToString()));
+
+        var result = ufAppService.Add(uf);
+
+        if (!result.IsValid) throw new RpcException(new Status(StatusCode.InvalidArgument, result.ToString()));
+
+        ufAppService.SaveChanges();
+
+        var response = new CreateUFResponse()
+        {
+            Id = uf.UFId
+        };
+
+        return Task.FromResult(response);
+    }
 }
