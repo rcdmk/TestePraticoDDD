@@ -27,7 +27,7 @@ namespace TestePratico.Data.Repositories
                 UFId = u.UFId,
                 Nome = u.Nome,
                 NumPessoas = u.Pessoas.Count()
-            }).First(u => u.UFId == id);
+            }).FirstOrDefault(u => u.UFId == id)!;
         }
     }
 }
