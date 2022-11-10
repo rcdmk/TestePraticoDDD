@@ -7,6 +7,7 @@ service UFs {
     rpc GetAll(GetAllUFsRequest) returns (GetAllUFsResponse);
     rpc GetById(GetUFByIdRequest) returns (GetUFByIdResponse);
     rpc Create(CreateUFRequest) returns (CreateUFResponse);
+    rpc Update(UpdateUFRequest) returns (UpdateUFResponse);
 }
 
 message GetAllUFsRequest {}
@@ -17,6 +18,11 @@ message GetUFByIdRequest{
 
 message CreateUFRequest {
     string nome = 1;
+}
+
+message UpdateUFRequest {
+    int32 id = 1;
+    string nome = 2;
 }
 
 message UF {
@@ -36,3 +42,5 @@ message GetUFByIdResponse {
 message CreateUFResponse {
     int32 id = 1;
 }
+
+message UpdateUFResponse{}
