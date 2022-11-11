@@ -82,4 +82,18 @@ public class UFsService : UFs.UFsBase
 
         return Task.FromResult(new UpdateUFResponse());
     }
+
+    public override Task<DeleteUFResponse> Delete(DeleteUFRequest request, ServerCallContext context)
+    {
+        var existing = ufAppService.GetById(request.Id);
+        if (existing == null) throw new RpcException(new Status(StatusCode.NotFound, "Not Found"));
+
+        var result = ufAppService.Remove(existing);
+
+        if (!result.IsValid) throw new RpcException(new Status(StatusCode.InvalidArgument, result.ToString()));
+
+        ufAppService.SaveChanges();
+
+        return Task.FromResult(new DeleteUFResponse());
+    }
 }

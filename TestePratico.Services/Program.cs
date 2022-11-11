@@ -7,7 +7,6 @@ using TestePratico.Domain.Interfaces.Services;
 using TestePratico.Domain.Services;
 using TestePratico.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
