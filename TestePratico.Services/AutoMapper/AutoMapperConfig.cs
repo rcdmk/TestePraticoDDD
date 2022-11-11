@@ -4,11 +4,11 @@ namespace TestePratico.Services.AutoMapper
 {
     public class AutoMapperConfig : MapperConfiguration
     {
-        public AutoMapperConfig(MapperConfigurationExpression configurationExpression) : base(configurationExpression)
+        public AutoMapperConfig(MapperConfigurationExpression confExpression) : base(confExpression)
         {
-            configurationExpression.AddProfile<StandardTypeMappingProfile>();
-            configurationExpression.AddProfile<DomainToViewModelMappingProfile>();
-            configurationExpression.AddProfile<ViewModelToDomainMappingProfile>();
+            confExpression.AddProfile<StandardTypeMappingProfile>();
+            confExpression.AddProfile<DomainToViewModelMappingProfile>();
+            confExpression.AddProfile<ViewModelToDomainMappingProfile>();
         }
     }
 }

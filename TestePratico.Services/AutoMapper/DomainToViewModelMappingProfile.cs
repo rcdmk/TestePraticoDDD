@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 
 namespace TestePratico.Services.AutoMapper
 {
@@ -6,10 +7,14 @@ namespace TestePratico.Services.AutoMapper
     {
         public DomainToViewModelMappingProfile() : base(nameof(DomainToViewModelMappingProfile))
         {
-            CreateMap<Domain.Entities.Pessoa, Services.Pessoa>().ForMember(p => p.Id, o => o.MapFrom(p => p.PessoaId));
+            CreateMap<Domain.Entities.Pessoa, Services.Pessoa>();
 
-            CreateMap<Domain.Entities.UF, Services.PessoaUF>().ForMember(u => u.Id, o => o.MapFrom(u => u.UFId));
-            CreateMap<Domain.Entities.UF, Services.UF>().ForMember(u => u.Id, o => o.MapFrom(u => u.UFId));
+            CreateMap<Domain.Entities.UF, Services.PessoaUF>();
+            CreateMap<Domain.Entities.UF, Services.UF>();
+
+            this.Internal().ForAllMaps((typeMap, mappingExpression) =>
+                mappingExpression.ForMember("Id", o => o.MapFrom(typeMap.SourceType.Name + "Id"))
+            );
         }
     }
 }
