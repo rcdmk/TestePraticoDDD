@@ -18,11 +18,19 @@ message GetPessoaByIdRequest{
 
 message CreatePessoaRequest {
     string nome = 1;
+    string ddd = 2;
+    string telefone = 3;
+    string email = 4;
+    int32 ufId = 5;
 }
 
 message UpdatePessoaRequest {
     int32 id = 1;
     string nome = 2;
+    string ddd = 3;
+    string telefone = 4;
+    string email = 5;
+    int32 ufId = 6;
 }
 
 message DeletePessoaRequest{
