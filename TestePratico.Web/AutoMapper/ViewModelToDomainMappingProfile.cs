@@ -8,8 +8,15 @@ namespace TestePratico.Web.AutoMapper
     {
         public ViewModelToDomainMappingProfile() : base(nameof(ViewModelToDomainMappingProfile))
         {
-            CreateMap<PessoaViewModel, Pessoa>().ForMember(m => m.UF, o => o.Ignore()).ForAllMembers(m => m.DoNotAllowNull());
-            CreateMap<UFViewModel, UF>();
+            CreateMap<PessoaViewModel, Pessoa>()
+                .ForMember(m => m.UF, o => o.Ignore())
+                .ForMember(m => m.CreatedAt, o => o.Ignore())
+                .ForMember(m => m.UpdatedAt, o => o.Ignore())
+                .ForAllMembers(m => m.DoNotAllowNull());
+
+            CreateMap<UFViewModel, UF>()
+                .ForMember(m => m.CreatedAt, o => o.Ignore())
+                .ForMember(m => m.UpdatedAt, o => o.Ignore());
         }
     }
 }

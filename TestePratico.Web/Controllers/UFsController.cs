@@ -98,7 +98,10 @@ namespace TestePratico.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ufDomain = Mapper.Map<UF>(uf);
+                var existingUF = ufApp.GetById(uf.UFId);
+                if (existingUF == null) return NotFound();
+
+                var ufDomain = Mapper.Map(uf, existingUF);
                 var result = ufApp.Update(ufDomain);
 
                 if (result.IsValid)

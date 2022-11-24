@@ -105,7 +105,10 @@ namespace TestePratico.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
+                var existingPessoa = pessoaService.GetById(pessoa.PessoaId);
+                if (existingPessoa == null) return NotFound();
+
+                var pessoaDomain = Mapper.Map(pessoa, existingPessoa);
                 var result = pessoaService.Update(pessoaDomain);
 
                 if (result.IsValid)
