@@ -13,12 +13,15 @@ namespace TestePratico.Services.AutoMapper
 
 
             CreateMap<Services.UF, Domain.Entities.UF>();
+            CreateMap<Services.CreateUFRequest, Domain.Entities.UF>();
             CreateMap<Services.UpdateUFRequest, Domain.Entities.UF>();
 
             this.Internal().ForAllMaps((typeMap, mappingExpression) =>
             {
-                if (typeMap.Types.SourceType != typeof(Services.CreatePessoaRequest))
+                if (typeMap.Types.SourceType.IsAssignableTo(typeof(Domain.Entities.EntityBase<>)))
+                {
                     mappingExpression.ForMember(typeMap.DestinationType.Name + "Id", o => o.MapFrom("Id"));
+                }
             }
             );
         }
