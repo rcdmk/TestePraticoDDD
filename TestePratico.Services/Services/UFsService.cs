@@ -46,8 +46,7 @@ public class UFsService : UFs.UFsBase
 
     public override Task<CreateUFResponse> Create(CreateUFRequest request, ServerCallContext context)
     {
-        var uf = new Domain.Entities.UF();
-        uf.Nome = request.Nome;
+        var uf = Mapper.Map<Domain.Entities.UF>(request);
 
         if (!uf.IsValid) throw new RpcException(new Status(StatusCode.InvalidArgument, uf.ValidationResult!.ToString()));
 
