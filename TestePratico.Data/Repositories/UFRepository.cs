@@ -1,5 +1,7 @@
-﻿using TestePratico.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using TestePratico.Data.Context;
 using TestePratico.Domain.Entities;
+using TestePratico.Domain.Entities.Validation;
 using TestePratico.Domain.Interfaces;
 
 namespace TestePratico.Data.Repositories
@@ -12,22 +14,18 @@ namespace TestePratico.Data.Repositories
 
         public override IEnumerable<UF> GetAll()
         {
-            return Db.Set<UF>().Select(u => new UF
-            {
-                UFId = u.UFId,
-                Nome = u.Nome,
-                NumPessoas = u.Pessoas.Count()
-            }).OrderBy(u => u.Nome).ToList();
+            return Db.Set<UF>()
+                .OrderBy(u => u.Nome)
+                .Select(u => u.WithNumPessoas(u.Pessoas.Count()))
+                .ToList();
         }
 
         public override UF GetById(int id)
         {
-            return Db.Set<UF>().Select(u => new UF
-            {
-                UFId = u.UFId,
-                Nome = u.Nome,
-                NumPessoas = u.Pessoas.Count()
-            }).FirstOrDefault(u => u.UFId == id)!;
+            return Db.Set<UF>()
+                .Where(u => u.UFId == id)
+                .Select(u => u.WithNumPessoas(u.Pessoas.Count()))
+                .FirstOrDefault()!;
         }
     }
 }
