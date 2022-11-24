@@ -23,5 +23,13 @@ namespace TestePratico.Web.ViewModels
         [Display(Name = "Pessoas")]
         [Editable(false)]
         public int NumPessoas { get; private set; }
+
+        [Display(Name = "Criação")]
+        [Editable(false)]
+        public DateTime CreatedAt { get; private set; }
+
+        [Display(Name = "Últ. Atualização")]
+        [Editable(false)]
+        public DateTime UpdatedAt { get; private set; }
     }
 }

@@ -53,5 +53,13 @@ namespace TestePratico.Web.ViewModels
         [Editable(false)]
         [ValidateNever]
         public virtual IList<SelectListItem>? UFs { get; set; }
+
+        [Display(Name = "Criação")]
+        [Editable(false)]
+        public DateTime CreatedAt { get; private set; }
+
+        [Display(Name = "Últ. Atualização")]
+        [Editable(false)]
+        public DateTime UpdatedAt { get; private set; }
     }
 }
