@@ -1,23 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using TestePratico.Domain.Entities.Validation;
-using TestePratico.Domain.Interfaces.Validation;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Entities
 {
-    public class UF : IValidable
+    public class UF : EntityBase<UF>
     {
-        public UF() : this(0, "", new List<Pessoa>(), new ValidationResult())
-        {
-        }
+        public UF() : this(0, "") { }
 
-        public UF(int ufId, string nome, IList<Pessoa> Pessoas, ValidationResult validationResult)
+        public UF(int UFId, string nome) : base(new UFValidator())
         {
-            this.UFId = ufId;
+            this.UFId = UFId;
             this.Nome = nome;
-            this.NumPessoas = Pessoas.Count;
-            this.Pessoas = Pessoas;
-            this.ValidationResult = validationResult;
+            this.Pessoas = new List<Pessoa>();
+            this.NumPessoas = 0;
         }
 
         public int UFId { get; set; }
@@ -29,16 +24,10 @@ namespace TestePratico.Domain.Entities
 
         public virtual IList<Pessoa> Pessoas { get; set; }
 
-        public ValidationResult ValidationResult { get; private set; }
-
-        public bool IsValid
+        public UF WithNumPessoas(int numPessoas)
         {
-            get
-            {
-                ValidationResult = new UFValidator().Validate(this);
-
-                return ValidationResult.IsValid;
-            }
+            this.NumPessoas = numPessoas;
+            return this;
         }
     }
 }
