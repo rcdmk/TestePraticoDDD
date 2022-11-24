@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Services", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Web", "TestePratico.Web\TestePratico.Web.csproj", "{4F3A1C8F-70D0-4B96-A729-AE3748A953CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestePratico.Domain.Tests", "TestePratico.Domain.Tests\TestePratico.Domain.Tests.csproj", "{EA49A6BE-EE4C-454F-8C6C-86C6C37358A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{4F3A1C8F-70D0-4B96-A729-AE3748A953CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3A1C8F-70D0-4B96-A729-AE3748A953CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F3A1C8F-70D0-4B96-A729-AE3748A953CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA49A6BE-EE4C-454F-8C6C-86C6C37358A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA49A6BE-EE4C-454F-8C6C-86C6C37358A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA49A6BE-EE4C-454F-8C6C-86C6C37358A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA49A6BE-EE4C-454F-8C6C-86C6C37358A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
