@@ -9,7 +9,7 @@ namespace TestePratico.Web.AutoMapper
     {
         public DomainToViewModelMappingProfile() : base(nameof(DomainToViewModelMappingProfile))
         {
-            CreateMap<Pessoa, PessoaViewModel>().ForMember(p => p.UF, m => m.MapFrom(p => p.UF.Nome));
+            CreateMap<Pessoa, PessoaViewModel>().ForMember(p => p.UF, m => m.MapFrom(p => p.UF != null ? p.UF.Nome : ""));
             CreateMap<UF, UFViewModel>();
 
             CreateMap<UF, SelectListItem>()
