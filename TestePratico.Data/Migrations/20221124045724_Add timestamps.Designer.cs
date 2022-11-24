@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestePratico.Data.Context;
 
@@ -10,9 +11,10 @@ using TestePratico.Data.Context;
 namespace TestePratico.Data.Migrations
 {
     [DbContext(typeof(TestePraticoContext))]
-    partial class TestePraticoContextModelSnapshot : ModelSnapshot
+    [Migration("20221124045724_Add timestamps")]
+    partial class Addtimestamps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
