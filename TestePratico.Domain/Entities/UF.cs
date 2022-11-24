@@ -1,31 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using TestePratico.Domain.Entities.Validation;
-using TestePratico.Domain.Interfaces.Validation;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Entities
 {
-	public class UF : IValidable
-	{
-		public int IdUF { get; set; }
-		public string Nome { get; set; }
+    public class UF : EntityBase<UF>
+    {
+        public UF() : this(0, "") { }
 
-		public virtual List<Pessoa> Pessoas { get; set; }
+        public UF(int UFId, string nome) : base(new UFValidator())
+        {
+            this.UFId = UFId;
+            this.Nome = nome;
+            this.Pessoas = new List<Pessoa>();
+            this.NumPessoas = 0;
+        }
 
-		public ValidationResult ValidationResult { get; private set; }
+        public int UFId { get; set; }
 
-		public bool IsValid
-		{
-			get
-			{
-				ValidationResult = new UFValidator().Validate(this);
+        public string Nome { get; set; }
 
-				return ValidationResult.IsValid;
-			}
-		}
-	}
+        [NotMapped]
+        public virtual int NumPessoas { get; set; }
+
+        public virtual IList<Pessoa> Pessoas { get; set; }
+
+        public UF WithNumPessoas(int numPessoas)
+        {
+            this.NumPessoas = numPessoas;
+            return this;
+        }
+    }
 }

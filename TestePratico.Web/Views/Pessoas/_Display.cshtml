@@ -1,0 +1,62 @@
+@model TestePratico.Web.ViewModels.PessoaViewModel
+
+<h4>Dados</h4>
+<hr />
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Nome)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Nome)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DataNascimento)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DataNascimento)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DDD)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DDD)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Telefone)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Telefone)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.UFId)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.UF)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.CreatedAt)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.UpdatedAt)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.UpdatedAt)
+    </dd>
+</dl>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\pessoas.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\ufs.proto" GrpcServices="Server" />
+    <Watch Include="**\*.proto" Exclude="bin\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.49.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestePratico.Domain\TestePratico.Domain.csproj" />
+    <ProjectReference Include="..\TestePratico.Commom\TestePratico.Commom.csproj" />
+    <ProjectReference Include="..\TestePratico.Application\TestePratico.Application.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,42 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TestePratico.Web.ViewModels
 {
-	public class PessoaViewModel
-	{
-		[Key]
-		public int IdPessoa { get; set; }
+    public class PessoaViewModel
+    {
+        public PessoaViewModel() : this(0, "") { }
 
-		[Required]
-		[MinLength(2)]
-		[MaxLength(150)]
-		public string Nome { get; set; }
+        public PessoaViewModel(int pessoaId, string nome)
+        {
+            this.PessoaId = pessoaId;
+            this.Nome = nome;
+        }
 
-		[Display(Name="Data de Nascimento")]
-		public DateTime? DataNascimento { get; set; }
+        [Key]
+        public int PessoaId { get; set; }
 
-		[MinLength(2)]
-		[MaxLength(2)]
-		[DataType(DataType.PhoneNumber)]
-		public string DDD { get; set; }
+        [Required]
+        [MinLength(2)]
+        [MaxLength(150)]
+        public string Nome { get; set; }
 
-		[MinLength(8)]
-		[MaxLength(10)]
-		[DataType(DataType.PhoneNumber)]
-		public string Telefone { get; set; }
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime? DataNascimento { get; set; }
 
-		[MinLength(4)]
-		[MaxLength(150)]
-		[EmailAddress]
-		public string Email { get; set; }
+        [MinLength(2)]
+        [MaxLength(2)]
+        [Phone]
+        public string? DDD { get; set; }
 
-		[Display(Name="UF")]
-		public int? IdUF { get; set; }
+        [MinLength(8)]
+        [MaxLength(10)]
+        [Phone]
+        public string? Telefone { get; set; }
 
-		public virtual UFViewModel UF { get; set; }
-	}
+        [MinLength(4)]
+        [MaxLength(150)]
+        [EmailAddress]
+        public string? Email { get; set; }
+
+        [Display(Name = "Estado")]
+        public int? UFId { get; set; }
+
+        [Editable(false)]
+        [ValidateNever]
+        public virtual string? UF { get; set; }
+
+        [Editable(false)]
+        [ValidateNever]
+        public virtual IList<SelectListItem>? UFs { get; set; }
+
+        [Display(Name = "Criação")]
+        [Editable(false)]
+        public DateTime CreatedAt { get; private set; }
+
+        [Display(Name = "Últ. Atualização")]
+        [Editable(false)]
+        public DateTime UpdatedAt { get; private set; }
+    }
 }

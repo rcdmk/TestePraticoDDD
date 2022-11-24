@@ -1,35 +1,16 @@
 ﻿@model TestePratico.Web.ViewModels.UFViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewData["Title"] = "Details: " + Model.Nome;
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>UFViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumPessoas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumPessoas)
-        </dd>
-
-    </dl>
+    <partial name="_Display" for="@Model"></partial>
 </div>
 <p>
-	@Html.ActionLink("Editar", "Edit", new { id = Model.IdUF }, new { @class = "btn btn-default" })
-	&nbsp;
-	@Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+    <a asp-action="Edit" asp-route-id="@Model.UFId" class="btn btn-secondary">Editar</a>
+    &nbsp;
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
 </p>

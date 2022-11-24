@@ -8,6 +8,7 @@ namespace TestePratico.Domain.Interfaces.Validation
 {
 	public interface IValidationRule<in TEntity>
 	{
+		string Field { get; }
 		string ErrorMessage { get; }
 		bool Valid(TEntity entity);
 	}

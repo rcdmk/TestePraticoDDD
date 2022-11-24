@@ -1,37 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestePratico.Domain.Entities.Validation;
-using TestePratico.Domain.Interfaces.Validation;
-using TestePratico.Domain.Validation;
+﻿using TestePratico.Domain.Entities.Validation;
 
 namespace TestePratico.Domain.Entities
 {
-	public class Pessoa : IValidable
-	{
-		public int IdPessoa { get; set; }
-		public string Nome { get; set; }
-		public DateTime? DataNascimento { get; set; }
-		public string DDD { get; set; }
-		public string Telefone { get; set; }
-		public string Email { get; set; }
+    public class Pessoa : EntityBase<Pessoa>
+    {
+        public Pessoa() : this(0, "", "", "", "", null) { }
 
-		public int? IdUF { get; set; }
+        public Pessoa(int pessoaId, string nome, string DDD, string telefone, string email, int? UFId) : base(new PessoaValidator())
+        {
+            this.PessoaId = pessoaId;
+            this.Nome = nome;
+            this.DDD = DDD;
+            this.Telefone = telefone;
+            this.Email = email;
+            this.UFId = UFId;
+        }
 
-		public virtual UF UF { get; set; }
+        public int PessoaId { get; set; }
 
-		public ValidationResult ValidationResult { get; private set; }
+        public string Nome { get; set; }
 
-		public bool IsValid
-		{
-			get
-			{
-				ValidationResult = new PessoaValidator().Validate(this);
+        public DateOnly? DataNascimento { get; set; }
 
-				return ValidationResult.IsValid;
-			}
-		}
-	}
+        public string DDD { get; set; }
+
+        public string Telefone { get; set; }
+
+        public string Email { get; set; }
+
+        public int? UFId { get; set; }
+
+        public virtual UF? UF { get; set; }
+    }
 }

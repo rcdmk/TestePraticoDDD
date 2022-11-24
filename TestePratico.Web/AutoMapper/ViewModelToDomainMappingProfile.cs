@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using TestePratico.Domain.Entities;
 using TestePratico.Web.ViewModels;
 
 namespace TestePratico.Web.AutoMapper
 {
-	public class ViewModelToDomainMappingProfile : Profile
-	{
-		public override string ProfileName
-		{
-			get
-			{
-				return "ViewModelToDomainMappingProfile";
-			}
-		}
+    public class ViewModelToDomainMappingProfile : Profile
+    {
+        public ViewModelToDomainMappingProfile() : base(nameof(ViewModelToDomainMappingProfile))
+        {
+            CreateMap<PessoaViewModel, Pessoa>()
+                .ForMember(m => m.UF, o => o.Ignore())
+                .ForMember(m => m.CreatedAt, o => o.Ignore())
+                .ForMember(m => m.UpdatedAt, o => o.Ignore())
+                .ForAllMembers(m => m.DoNotAllowNull());
 
-
-		protected override void Configure()
-		{
-			Mapper.CreateMap<PessoaViewModel, Pessoa>();
-			Mapper.CreateMap<UFViewModel, UF>();
-		}
-	}
+            CreateMap<UFViewModel, UF>()
+                .ForMember(m => m.CreatedAt, o => o.Ignore())
+                .ForMember(m => m.UpdatedAt, o => o.Ignore());
+        }
+    }
 }

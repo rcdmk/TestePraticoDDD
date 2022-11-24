@@ -1,10 +1,11 @@
 # Projeto de estrutura DDD
 
-[![Build status](https://ci.appveyor.com/api/projects/status/eame993nxk4axhil/branch/master?svg=true)](https://ci.appveyor.com/project/rcdmk/testepraticoddd/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/799cc3qwne3d6el0?svg=true)](https://ci.appveyor.com/project/rcdmk/testepraticoddd)
 
-Este projeto utiliza diversos padrıes de desenvolvimento como modelo de aprendizado:
+Este projeto utiliza diversos padr√µes de desenvolvimento como modelo de aprendizado:
 
-* DDD - Arquitetura orientada ao domÌnio
-* SelfValidation - As entidades possuem auto validaÁ„o e s„o respons·veis por seu estado de validade com regras de negÛcio.
-* Repository - A comunicaÁ„o com a camada de dados È efetuada atravÈs de repositÛrios
+* DDD - Arquitetura orientada ao dom√≠nio
+* SelfValidation - As entidades possuem auto valida√ß√£o e s√£o respons√°veis por seu estado de validade com regras de neg√≥cio.
+* Repository - A comunica√ß√£o com a camada de dados √© efetuada atrav√©s de reposit√≥rios
+* Application Services - O acesso aos dados √© efetuado atrav√©s de servi√ßos WCF
 * ... (mais por vir)

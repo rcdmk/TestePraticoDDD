@@ -1,13 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<div class="text-center">
+    <h1 class="display-4">Index</h1>
 
-<p>Cadastro simples de Pessoas e UFs</p>
-
-<ul class="list-group">
-	<li class="list-group-item">@Html.ActionLink("Pessoas", "Index", "Pessoas")</li>
-	<li class="list-group-item">@Html.ActionLink("UFs", "Index", "UFs")</li>
-</ul>
+    <ul class="list-group">
+        <li class="list-group-item"><a asp-area="" asp-controller="Pessoas" asp-action="Index">Pessoas</a></li>
+        <li class="list-group-item"><a asp-area="" asp-controller="UFs" asp-action="Index">UFs</a></li>
+    </ul>
+</div>

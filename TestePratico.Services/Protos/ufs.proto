@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestePratico.Services";
+
+
+service UFs {
+    rpc GetAll(GetAllUFsRequest) returns (GetAllUFsResponse);
+    rpc GetById(GetUFByIdRequest) returns (GetUFByIdResponse);
+    rpc Create(CreateUFRequest) returns (CreateUFResponse);
+    rpc Update(UpdateUFRequest) returns (UpdateUFResponse);
+    rpc Delete(DeleteUFRequest) returns (DeleteUFResponse);
+}
+
+message GetAllUFsRequest {}
+
+message GetUFByIdRequest{
+    int32 id = 1;
+}
+
+message CreateUFRequest {
+    string nome = 1;
+}
+
+message UpdateUFRequest {
+    int32 id = 1;
+    string nome = 2;
+}
+
+message DeleteUFRequest{
+    int32 id = 1;
+}
+
+message UF {
+    int32 id = 1;
+    string nome = 2;
+    int32 num_pessoas = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message GetAllUFsResponse {
+    repeated UF data = 1;
+}
+
+message GetUFByIdResponse {
+    UF uf = 1;
+}
+
+message CreateUFResponse {
+    int32 id = 1;
+}
+
+message UpdateUFResponse{}
+
+message DeleteUFResponse{}

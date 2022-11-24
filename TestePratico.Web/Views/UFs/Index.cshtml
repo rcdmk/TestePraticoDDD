@@ -1,21 +1,27 @@
 ﻿@model IEnumerable<TestePratico.Web.ViewModels.UFViewModel>
 
 @{
-	ViewBag.Title = "UFs";
+	ViewData["Title"] = "UFs";
 }
 
 <h2>UFs</h2>
 
 <p>
-	@Html.ActionLink("Criar", "Create", null, new { @class = "btn btn-primary" })
+	<a asp-action="Create" class="btn btn-primary">Criar</a>
 </p>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.Nome)
+			@Html.DisplayNameFor(m => m.Nome)
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.NumPessoas)
+			@Html.DisplayNameFor(m => m.NumPessoas)
+		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.First().CreatedAt)
+		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.First().UpdatedAt)
 		</th>
 		<th></th>
 	</tr>
@@ -32,9 +38,15 @@
 					@Html.DisplayFor(modelItem => item.NumPessoas)
 				</td>
 				<td>
-					@Html.ActionLink("Editar", "Edit", new { id = item.IdUF }) |
-					@Html.ActionLink("Detailhes", "Details", new { id = item.IdUF }) |
-					@Html.ActionLink("Excluir", "Delete", new { id = item.IdUF })
+					@Html.DisplayFor(modelItem => item.CreatedAt)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.UpdatedAt)
+				</td>
+				<td>
+					@Html.ActionLink("Editar", "Edit", new { id = item.UFId }) |
+					@Html.ActionLink("Detailhes", "Details", new { id = item.UFId }) |
+					@Html.ActionLink("Excluir", "Delete", new { id = item.UFId })
 				</td>
 			</tr>
 		}
