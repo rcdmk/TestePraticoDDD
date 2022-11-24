@@ -34,6 +34,8 @@ message UF {
     int32 id = 1;
     string nome = 2;
     int32 num_pessoas = 3;
+    string created_at = 4;
+    string updated_at = 5;
 }
 
 message GetAllUFsResponse {

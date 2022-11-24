@@ -45,6 +45,8 @@ message Pessoa {
     string telefone = 4;
     string email = 5;
     PessoaUF uf = 6;
+    string created_at = 7;
+    string updated_at = 8;
 }
 
 message PessoaUF {
