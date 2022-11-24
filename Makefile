@@ -28,6 +28,15 @@ remove-migration:
 	cd $(STARTUP_PROJECT) && \
 	dotnet ef migrations remove --project ../$(DATA_PROJECT);
 
+.PHONY: revert-to-migration
+revert-to-migration:
+	@test -n "$(MIGRATION_NAME)" || (echo "MIGRATION_NAME must be defined" ; exit 1);
+
+	cd $(STARTUP_PROJECT) && \
+	dotnet ef database update "$(MIGRATION_NAME)" \
+		--project=../$(DATA_PROJECT);
+
+
 .PHONY: update-database
 update-database:
 	cd $(STARTUP_PROJECT) && \
