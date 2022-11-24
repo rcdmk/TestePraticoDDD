@@ -29,6 +29,12 @@
 		<th>
 			@Html.DisplayNameFor(m => m.First().UFId)
 		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.First().CreatedAt)
+		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.First().UpdatedAt)
+		</th>
 		<th class="col-2"></th>
 	</tr>
 
@@ -54,6 +60,12 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.UF)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedAt)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.UpdatedAt)
 				</td>
 				<td class="text-center">
 					<a asp-action="Edit" asp-route-id="@item.PessoaId">Editar</a> |
