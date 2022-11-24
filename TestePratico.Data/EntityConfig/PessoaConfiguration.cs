@@ -9,15 +9,17 @@ using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-    public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
+    public class PessoaConfiguration : EntityBaseConfiguration<Pessoa>
     {
         public PessoaConfiguration()
         {
 
         }
 
-        public void Configure(EntityTypeBuilder<Pessoa> builder)
+        public override void Configure(EntityTypeBuilder<Pessoa> builder)
         {
+            base.Configure(builder);
+
             builder.Property(p => p.Nome)
                 .IsRequired()
                 .HasMaxLength(150);

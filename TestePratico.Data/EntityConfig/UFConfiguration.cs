@@ -4,10 +4,12 @@ using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-    public class UFConfiguration : IEntityTypeConfiguration<UF>
+    public class UFConfiguration : EntityBaseConfiguration<UF>
     {
-        public void Configure(EntityTypeBuilder<UF> builder)
+        public override void Configure(EntityTypeBuilder<UF> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("UFs");
 
             builder.Property(u => u.Nome)
@@ -18,7 +20,7 @@ namespace TestePratico.Data.EntityConfig
             builder.Ignore(u => u.IsValid);
 
             builder.HasData(new[]{
-                new UF { UFId = 1, Nome = "SP" }
+                new UF(UFId: 1, nome: "SP")
             });
         }
     }
