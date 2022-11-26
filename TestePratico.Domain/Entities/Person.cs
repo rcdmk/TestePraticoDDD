@@ -6,7 +6,7 @@ namespace TestePratico.Domain.Entities
     {
         public Person() : this(0, "", "", "", "", null) { }
 
-        public Person(int personId, string name, string areaCode, string phone, string email, int? UFId) : base(new PessoaValidator())
+        public Person(int personId, string name, string areaCode, string phone, string email, int? UFId) : base(new PersonValidator())
         {
             this.PersonId = personId;
             this.Name = name;
@@ -20,7 +20,7 @@ namespace TestePratico.Domain.Entities
 
         public string Name { get; set; }
 
-        public DateOnly? BirthDate { get; set; }
+        public DateOnly? Birthdate { get; set; }
 
         public string AreaCode { get; set; }
 

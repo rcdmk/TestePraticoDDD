@@ -9,11 +9,11 @@ namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
     public class PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec : ISpecification<Person>
     {
-        public string Field => nameof(Person.BirthDate);
+        public string Field => nameof(Person.Birthdate);
 
         public bool IsSatisfiedBy(Person entity)
         {
-            return !entity.BirthDate.HasValue || entity.BirthDate <= DateOnly.FromDateTime(DateTime.Today);
+            return !entity.Birthdate.HasValue || entity.Birthdate <= DateOnly.FromDateTime(DateTime.Today);
         }
     }
 }
