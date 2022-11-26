@@ -1,8 +1,8 @@
 using TestePratico.Domain.Interfaces.Validation;
 
-namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
+namespace TestePratico.Domain.Entities.Specifications.PersonSpecs
 {
-    public class PessoaPrecisaTerUmNomeEntre2e150Caracteres : ISpecification<Person>
+    public class PersonMustHaveANameBetween2and150ChachactersLongSpec : ISpecification<Person>
     {
         public string Field => nameof(Person.Name);
 
