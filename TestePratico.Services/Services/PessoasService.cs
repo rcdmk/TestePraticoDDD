@@ -47,7 +47,7 @@ public class PessoasService : Pessoas.PessoasBase
 
     public override Task<CreatePessoaResponse> Create(CreatePessoaRequest request, ServerCallContext context)
     {
-        var pessoa = Mapper.Map<Domain.Entities.Pessoa>(request);
+        var pessoa = Mapper.Map<Domain.Entities.Person>(request);
 
         if (!pessoa.IsValid) throw new RpcException(new Status(StatusCode.InvalidArgument, pessoa.ValidationResult!.ToString()));
 
@@ -59,7 +59,7 @@ public class PessoasService : Pessoas.PessoasBase
 
         var response = new CreatePessoaResponse()
         {
-            Id = pessoa.PessoaId
+            Id = pessoa.PersonId
         };
 
         return Task.FromResult(response);

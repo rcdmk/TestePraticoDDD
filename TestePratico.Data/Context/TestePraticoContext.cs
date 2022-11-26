@@ -6,7 +6,7 @@ namespace TestePratico.Data.Context
 {
     public class TestePraticoContext : DbContext
     {
-        public DbSet<Pessoa> Pessoas { get; set; } = null!;
+        public DbSet<Person> Pessoas { get; set; } = null!;
         public DbSet<UF> UF { get; set; } = null!;
 
         protected TestePraticoContext()

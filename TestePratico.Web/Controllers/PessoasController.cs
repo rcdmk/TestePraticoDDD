@@ -61,7 +61,7 @@ namespace TestePratico.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
+                var pessoaDomain = Mapper.Map<Person>(pessoa);
                 var result = pessoaService.Add(pessoaDomain);
 
                 if (result.IsValid)

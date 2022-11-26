@@ -7,13 +7,13 @@ using TestePratico.Domain.Interfaces.Validation;
 
 namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
-    public class PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec : ISpecification<Pessoa>
+    public class PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec : ISpecification<Person>
     {
-        public string Field => nameof(Pessoa.DataNascimento);
+        public string Field => nameof(Person.BirthDate);
 
-        public bool IsSatisfiedBy(Pessoa entity)
+        public bool IsSatisfiedBy(Person entity)
         {
-            return !entity.DataNascimento.HasValue || entity.DataNascimento <= DateOnly.FromDateTime(DateTime.Today);
+            return !entity.BirthDate.HasValue || entity.BirthDate <= DateOnly.FromDateTime(DateTime.Today);
         }
     }
 }

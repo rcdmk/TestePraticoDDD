@@ -11,7 +11,7 @@ namespace TestePratico.Domain.Entities
         {
             this.UFId = UFId;
             this.Nome = nome;
-            this.Pessoas = new List<Pessoa>();
+            this.Pessoas = new List<Person>();
             this.NumPessoas = 0;
         }
 
@@ -22,7 +22,7 @@ namespace TestePratico.Domain.Entities
         [NotMapped]
         public virtual int NumPessoas { get; set; }
 
-        public virtual IList<Pessoa> Pessoas { get; set; }
+        public virtual IList<Person> Pessoas { get; set; }
 
         public UF WithNumPessoas(int numPessoas)
         {

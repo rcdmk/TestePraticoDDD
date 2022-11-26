@@ -3,14 +3,14 @@ using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Entities.Validation
 {
-    public class PessoaValidator : Validator<Pessoa>
+    public class PessoaValidator : Validator<Person>
     {
         public PessoaValidator()
         {
-            AddRule(new ValidationRule<Pessoa>(new PessoaPrecisaTerUmNomeDefinidoSpec(), "É obrigatório informar um nome"));
-            AddRule(new ValidationRule<Pessoa>(new PessoaPrecisaTerUmNomeEntre2e150Caracteres(), "O nome precisa ter entre 2 e 150 caracteres"));
-            AddRule(new ValidationRule<Pessoa>(new PessoaPrecisaTerUmaUFDefinidaSpec(), "É obrigatório selecionar uma UF"));
-            AddRule(new ValidationRule<Pessoa>(new PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec(), "A data de nascimento não pode ser no futuro"));
+            AddRule(new ValidationRule<Person>(new PessoaPrecisaTerUmNomeDefinidoSpec(), "É obrigatório informar um nome"));
+            AddRule(new ValidationRule<Person>(new PessoaPrecisaTerUmNomeEntre2e150Caracteres(), "O nome precisa ter entre 2 e 150 caracteres"));
+            AddRule(new ValidationRule<Person>(new PessoaPrecisaTerUmaUFDefinidaSpec(), "É obrigatório selecionar uma UF"));
+            AddRule(new ValidationRule<Person>(new PessoaNaoDeveTerDataDeNascimentoNoFuturoSpec(), "A data de nascimento não pode ser no futuro"));
         }
     }
 }

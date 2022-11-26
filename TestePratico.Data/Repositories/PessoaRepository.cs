@@ -5,24 +5,24 @@ using TestePratico.Domain.Interfaces;
 
 namespace TestePratico.Data.Repositories
 {
-    public class PessoaRepository : RepositoryBase<Pessoa>, IPessoaRepository
+    public class PessoaRepository : RepositoryBase<Person>, IPessoaRepository
     {
         public PessoaRepository(TestePraticoContext db) : base(db)
         {
         }
 
-        public override Pessoa GetById(int id)
+        public override Person GetById(int id)
         {
-            return Db.Set<Pessoa>()
+            return Db.Set<Person>()
                 .Include(p => p.UF)
-                .FirstOrDefault(p => p.PessoaId == id)!;
+                .FirstOrDefault(p => p.PersonId == id)!;
         }
 
-        public override IEnumerable<Pessoa> GetAll()
+        public override IEnumerable<Person> GetAll()
         {
-            return Db.Set<Pessoa>()
+            return Db.Set<Person>()
                 .Include(p => p.UF)
-                .OrderBy(p => p.Nome)
+                .OrderBy(p => p.Name)
                 .ToList();
         }
     }

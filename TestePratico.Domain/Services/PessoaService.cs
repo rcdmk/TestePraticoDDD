@@ -9,14 +9,14 @@ using TestePratico.Domain.Interfaces.Services;
 
 namespace TestePratico.Domain.Services
 {
-	public class PessoaService : ServiceBase<Pessoa>, IPessoaService
-	{
-		private IPessoaRepository repository;
+    public class PessoaService : ServiceBase<Person>, IPessoaService
+    {
+        private IPessoaRepository repository;
 
-		public PessoaService(IPessoaRepository repository)
-			:base(repository)
-		{
-			this.repository = repository;
-		}
-	}
+        public PessoaService(IPessoaRepository repository)
+            : base(repository)
+        {
+            this.repository = repository;
+        }
+    }
 }

@@ -4,7 +4,7 @@ using TestePratico.Domain.Interfaces.Services;
 
 namespace TestePratico.Application
 {
-    public class PessoaAppService : AppServiceBase<Pessoa>, IPessoaAppService
+    public class PessoaAppService : AppServiceBase<Person>, IPessoaAppService
     {
         private readonly IPessoaService servico;
 

@@ -2,13 +2,13 @@ using TestePratico.Domain.Interfaces.Validation;
 
 namespace TestePratico.Domain.Entities.Specifications.PessoaSpecs
 {
-    public class PessoaPrecisaTerUmNomeEntre2e150Caracteres : ISpecification<Pessoa>
+    public class PessoaPrecisaTerUmNomeEntre2e150Caracteres : ISpecification<Person>
     {
-        public string Field => nameof(Pessoa.Nome);
+        public string Field => nameof(Person.Name);
 
-        public bool IsSatisfiedBy(Pessoa entity)
+        public bool IsSatisfiedBy(Person entity)
         {
-            return entity.Nome.Length >= 2 && entity.Nome.Length <= 50;
+            return entity.Name.Length >= 2 && entity.Name.Length <= 50;
         }
     }
 }

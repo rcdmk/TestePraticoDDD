@@ -9,25 +9,25 @@ using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-    public class PessoaConfiguration : EntityBaseConfiguration<Pessoa>
+    public class PessoaConfiguration : EntityBaseConfiguration<Person>
     {
         public PessoaConfiguration()
         {
 
         }
 
-        public override void Configure(EntityTypeBuilder<Pessoa> builder)
+        public override void Configure(EntityTypeBuilder<Person> builder)
         {
             base.Configure(builder);
 
-            builder.Property(p => p.Nome)
+            builder.Property(p => p.Name)
                 .IsRequired()
                 .HasMaxLength(150);
 
-            builder.Property(p => p.DDD)
+            builder.Property(p => p.AreaCode)
                 .HasMaxLength(2);
 
-            builder.Property(p => p.Telefone)
+            builder.Property(p => p.Phone)
                 .HasMaxLength(10);
 
             builder.Property(p => p.Email)
