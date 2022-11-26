@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestePratico.Domain.Entities;
+﻿using TestePratico.Domain.Entities;
 using TestePratico.Domain.Interfaces;
 using TestePratico.Domain.Interfaces.Services;
 using TestePratico.Domain.Validation;
@@ -27,7 +22,7 @@ namespace TestePratico.Domain.Services
             if (obj.People.Count > 0 || obj.PeopleCount > 0)
             {
                 result = new ValidationResult();
-                result.Add("", "Esta UF não pode ser excluída porque tem pessoas associadas a ela.");
+                result.Add("", "This UF can't be deleted becuase it has people associated with it.");
             }
             else
             {
