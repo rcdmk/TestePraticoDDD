@@ -5,7 +5,7 @@ using TestePratico.Domain.Interfaces;
 
 namespace TestePratico.Data.Repositories
 {
-    public class PessoaRepository : RepositoryBase<Person>, IPessoaRepository
+    public class PessoaRepository : RepositoryBase<Person>, IPersonRepository
     {
         public PessoaRepository(TestePraticoContext db) : base(db)
         {

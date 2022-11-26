@@ -9,11 +9,11 @@ using TestePratico.Domain.Interfaces.Services;
 
 namespace TestePratico.Domain.Services
 {
-    public class PessoaService : ServiceBase<Person>, IPessoaService
+    public class PessoaService : ServiceBase<Person>, IPersonService
     {
-        private IPessoaRepository repository;
+        private IPersonRepository repository;
 
-        public PessoaService(IPessoaRepository repository)
+        public PessoaService(IPersonRepository repository)
             : base(repository)
         {
             this.repository = repository;

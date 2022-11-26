@@ -7,7 +7,7 @@ using TestePratico.Domain.Entities;
 
 namespace TestePratico.Domain.Interfaces.Services
 {
-    public interface IPessoaService : IServiceBase<Person>
+    public interface IPersonService : IServiceBase<Person>
     {
     }
 }

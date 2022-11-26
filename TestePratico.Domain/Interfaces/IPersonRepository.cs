@@ -2,7 +2,7 @@
 
 namespace TestePratico.Domain.Interfaces
 {
-    public interface IPessoaRepository : IRepositoryBase<Person>
+    public interface IPersonRepository : IRepositoryBase<Person>
     {
     }
 }

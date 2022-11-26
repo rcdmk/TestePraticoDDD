@@ -6,9 +6,9 @@ namespace TestePratico.Application
 {
     public class PessoaAppService : AppServiceBase<Person>, IPessoaAppService
     {
-        private readonly IPessoaService servico;
+        private readonly IPersonService servico;
 
-        public PessoaAppService(IPessoaService servico)
+        public PessoaAppService(IPersonService servico)
             : base(servico)
         {
             this.servico = servico;
