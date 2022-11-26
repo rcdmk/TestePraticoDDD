@@ -1,5 +1,4 @@
 using TestePratico.Domain.Entities;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Tests.Fakes;
 

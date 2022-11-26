@@ -2,7 +2,6 @@ using Moq;
 using TestePratico.Domain.Interfaces;
 using TestePratico.Domain.Services;
 using TestePratico.Domain.Tests.Fakes;
-using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Tests.Services;
 
