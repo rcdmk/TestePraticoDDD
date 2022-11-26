@@ -8,11 +8,11 @@ namespace TestePratico.Domain.Entities.Specifications.UFSpecs
 {
     public class UFPrecisaTerUmNomeEntre2e50Caracteres : ISpecification<UF>
     {
-        public string Field => nameof(UF.Nome);
+        public string Field => nameof(UF.Name);
 
         public bool IsSatisfiedBy(UF entity)
         {
-            return entity.Nome.Length >= 2 && entity.Nome.Length <= 50;
+            return entity.Name.Length >= 2 && entity.Name.Length <= 50;
         }
     }
 }

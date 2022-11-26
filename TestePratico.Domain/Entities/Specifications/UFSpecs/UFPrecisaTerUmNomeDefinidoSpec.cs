@@ -9,11 +9,11 @@ namespace TestePratico.Domain.Entities.Specifications.UFSpecs
 {
     public class UFPrecisaTerUmNomeDefinidoSpec : ISpecification<UF>
     {
-        public string Field => nameof(UF.Nome);
+        public string Field => nameof(UF.Name);
 
         public bool IsSatisfiedBy(UF entity)
         {
-            return !string.IsNullOrWhiteSpace(entity.Nome);
+            return !string.IsNullOrWhiteSpace(entity.Name);
         }
     }
 }

@@ -15,8 +15,8 @@ namespace TestePratico.Data.Repositories
         public override IEnumerable<UF> GetAll()
         {
             return Db.Set<UF>()
-                .OrderBy(u => u.Nome)
-                .Select(u => u.WithNumPessoas(u.Pessoas.Count()))
+                .OrderBy(u => u.Name)
+                .Select(u => u.WithPeopleCount(u.People.Count()))
                 .ToList();
         }
 
@@ -24,7 +24,7 @@ namespace TestePratico.Data.Repositories
         {
             return Db.Set<UF>()
                 .Where(u => u.UFId == id)
-                .Select(u => u.WithNumPessoas(u.Pessoas.Count()))
+                .Select(u => u.WithPeopleCount(u.People.Count()))
                 .FirstOrDefault()!;
         }
     }
