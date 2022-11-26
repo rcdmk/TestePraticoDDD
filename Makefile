@@ -1,4 +1,5 @@
 STARTUP_PROJECT := TestePratico.Web
+SERVICES_PROJECT := TestePratico.Services
 DATA_PROJECT := TestePratico.Data
 MIGRATION_NAME :=
 
@@ -13,6 +14,14 @@ start-web:
 .PHONY: watch-web
 watch-web:
 	dotnet watch --project ./$(STARTUP_PROJECT);
+
+.PHONY: start-services
+start-services:
+	dotnet run --project ./$(SERVICES_PROJECT);
+
+.PHONY: watch-services
+watch-services:
+	dotnet watch --project ./$(SERVICES_PROJECT);
 
 .PHONY: add-migration
 add-migration:
@@ -46,3 +55,7 @@ update-database:
 drop-database:
 	cd $(STARTUP_PROJECT) && \
 	dotnet ef database drop --project ../$(DATA_PROJECT);
+
+.PHONY: tests
+tests:
+	dotnet test
