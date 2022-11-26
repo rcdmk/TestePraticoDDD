@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TestePratico.Domain.Entities;
 
 namespace TestePratico.Data.EntityConfig
 {
-    public class PessoaConfiguration : EntityBaseConfiguration<Person>
+    public class PersonConfiguration : EntityBaseConfiguration<Person>
     {
-        public PessoaConfiguration()
+        public PersonConfiguration()
         {
-
         }
 
         public override void Configure(EntityTypeBuilder<Person> builder)
         {
             base.Configure(builder);
+
+            builder.ToTable("People");
 
             builder.Property(p => p.Name)
                 .IsRequired()
