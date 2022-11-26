@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TestePratico.Domain.Interfaces.Validation;
 
 namespace TestePratico.Domain.Entities.Specifications.UFSpecs
 {
-    public class UFPrecisaTerUmNomeEntre2e50Caracteres : ISpecification<UF>
+    public class UFMustHaveANameBetween2and50CharactersLongSpec : ISpecification<UF>
     {
         public string Field => nameof(UF.Name);
 
