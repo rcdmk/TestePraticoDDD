@@ -21,7 +21,7 @@ namespace TestePratico.Domain.Validation
             rules.Remove(rule);
         }
 
-        public ValidationResult Validate(TEntity entity)
+        public virtual ValidationResult Validate(TEntity entity)
         {
             var result = new ValidationResult();
 
