@@ -18,7 +18,7 @@ internal class Program
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddScoped<IPersonRepository, PessoaRepository>();
+        builder.Services.AddScoped<IPersonRepository, PersonRepository>();
         builder.Services.AddScoped<IUFRepository, UFRepository>();
         builder.Services.AddScoped<IPersonService, PersonService>();
         builder.Services.AddScoped<IUFService, UFService>();

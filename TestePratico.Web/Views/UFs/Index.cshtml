@@ -12,10 +12,10 @@
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(m => m.Nome)
+			@Html.DisplayNameFor(m => m.Name)
 		</th>
 		<th>
-			@Html.DisplayNameFor(m => m.NumPessoas)
+			@Html.DisplayNameFor(m => m.PeopleCount)
 		</th>
 		<th>
 			@Html.DisplayNameFor(m => m.First().CreatedAt)
@@ -32,10 +32,10 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.Nome)
+					@Html.DisplayFor(modelItem => item.Name)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.NumPessoas)
+					@Html.DisplayFor(modelItem => item.PeopleCount)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.CreatedAt)

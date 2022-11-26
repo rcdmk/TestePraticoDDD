@@ -25,7 +25,7 @@ namespace TestePratico.Web.Controllers
         // GET: Pessoas
         public ActionResult Index()
         {
-            var pessoas = Mapper.Map<IEnumerable<PessoaViewModel>>(pessoaService.GetAll());
+            var pessoas = Mapper.Map<IEnumerable<PersonViewModel>>(pessoaService.GetAll());
 
             return View(pessoas);
         }
@@ -48,7 +48,7 @@ namespace TestePratico.Web.Controllers
         // GET: Pessoas/Create
         public ActionResult Create()
         {
-            var pessoa = new PessoaViewModel();
+            var pessoa = new PersonViewModel();
             pessoa.UFs = getUFList();
 
             return View(pessoa);
@@ -57,7 +57,7 @@ namespace TestePratico.Web.Controllers
         // POST: Pessoas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PessoaViewModel pessoa)
+        public ActionResult Create(PersonViewModel pessoa)
         {
             if (ModelState.IsValid)
             {
@@ -101,11 +101,11 @@ namespace TestePratico.Web.Controllers
         // POST: Pessoas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PessoaViewModel pessoa)
+        public ActionResult Edit(PersonViewModel pessoa)
         {
             if (ModelState.IsValid)
             {
-                var existingPessoa = pessoaService.GetById(pessoa.PessoaId);
+                var existingPessoa = pessoaService.GetById(pessoa.PersonId);
                 if (existingPessoa == null) return NotFound();
 
                 var pessoaDomain = Mapper.Map(pessoa, existingPessoa);
@@ -181,9 +181,9 @@ namespace TestePratico.Web.Controllers
 
         #region helpers
 
-        PessoaViewModel getViewModelById(int id)
+        PersonViewModel getViewModelById(int id)
         {
-            return Mapper.Map<PessoaViewModel>(pessoaService.GetById(id));
+            return Mapper.Map<PersonViewModel>(pessoaService.GetById(id));
         }
 
         IList<SelectListItem> getUFList()

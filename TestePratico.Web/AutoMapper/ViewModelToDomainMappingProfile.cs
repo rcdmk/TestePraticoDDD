@@ -8,7 +8,7 @@ namespace TestePratico.Web.AutoMapper
     {
         public ViewModelToDomainMappingProfile() : base(nameof(ViewModelToDomainMappingProfile))
         {
-            CreateMap<PessoaViewModel, Person>()
+            CreateMap<PersonViewModel, Person>()
                 .ForMember(m => m.UF, o => o.Ignore())
                 .ForMember(m => m.CreatedAt, o => o.Ignore())
                 .ForMember(m => m.UpdatedAt, o => o.Ignore())

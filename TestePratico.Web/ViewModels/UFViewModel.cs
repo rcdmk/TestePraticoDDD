@@ -9,7 +9,7 @@ namespace TestePratico.Web.ViewModels
         public UFViewModel(int uFId, string nome)
         {
             this.UFId = uFId;
-            this.Nome = nome;
+            this.Name = nome;
         }
 
         [Key]
@@ -18,17 +18,17 @@ namespace TestePratico.Web.ViewModels
         [Required]
         [MinLength(2)]
         [MaxLength(50)]
-        public string Nome { get; set; }
+        public string Name { get; set; }
 
-        [Display(Name = "Pessoas")]
+        [Display(Name = "People")]
         [Editable(false)]
-        public int NumPessoas { get; private set; }
+        public int PeopleCount { get; private set; }
 
-        [Display(Name = "Criação")]
+        [Display(Name = "Created")]
         [Editable(false)]
         public DateTime CreatedAt { get; private set; }
 
-        [Display(Name = "Últ. Atualização")]
+        [Display(Name = "Last Update")]
         [Editable(false)]
         public DateTime UpdatedAt { get; private set; }
     }

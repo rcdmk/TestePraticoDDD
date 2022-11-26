@@ -1,7 +1,7 @@
-﻿@model IEnumerable<TestePratico.Web.ViewModels.PessoaViewModel>
+﻿@model IEnumerable<TestePratico.Web.ViewModels.PersonViewModel>
 
 @{
-	ViewData["Title"] = "Pessoas";
+	ViewData["Title"] = "People";
 }
 
 <h2>Index</h2>
@@ -12,16 +12,16 @@
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(m => m.First().Nome)
+			@Html.DisplayNameFor(m => m.First().Name)
 		</th>
 		<th>
-			@Html.DisplayNameFor(m => m.First().DataNascimento)
+			@Html.DisplayNameFor(m => m.First().Birthdate)
 		</th>
 		<th>
-			@Html.DisplayNameFor(m => m.First().DDD)
+			@Html.DisplayNameFor(m => m.First().AreaCode)
 		</th>
 		<th>
-			@Html.DisplayNameFor(m => m.First().Telefone)
+			@Html.DisplayNameFor(m => m.First().Phone)
 		</th>
 		<th>
 			@Html.DisplayNameFor(m => m.First().Email)
@@ -44,16 +44,16 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.Nome)
+					@Html.DisplayFor(modelItem => item.Name)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.DataNascimento)
+					@Html.DisplayFor(modelItem => item.Birthdate)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.DDD)
+					@Html.DisplayFor(modelItem => item.AreaCode)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Telefone)
+					@Html.DisplayFor(modelItem => item.Phone)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Email)
@@ -68,9 +68,9 @@
 					@Html.DisplayFor(modelItem => item.UpdatedAt)
 				</td>
 				<td class="text-center">
-					<a asp-action="Edit" asp-route-id="@item.PessoaId">Editar</a> |
-					<a asp-action="Details" asp-route-id="@item.PessoaId">Detalhes</a> |
-					<a asp-action="Delete" asp-route-id="@item.PessoaId">Excluir</a>
+					<a asp-action="Edit" asp-route-id="@item.PersonId">Editar</a> |
+					<a asp-action="Details" asp-route-id="@item.PersonId">Detalhes</a> |
+					<a asp-action="Delete" asp-route-id="@item.PersonId">Excluir</a>
 				</td>
 			</tr>
 		}
