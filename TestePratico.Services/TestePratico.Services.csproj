@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\pessoas.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\ufs.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\*.proto" GrpcServices="Server" />
     <Watch Include="**\*.proto" Exclude="bin\**\*" />
   </ItemGroup>
 

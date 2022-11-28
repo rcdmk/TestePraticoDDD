@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestePratico.Services";
+
+service People {
+    rpc GetAll(GetAllPeopleRequest) returns (GetAllPeopleResponse);
+    rpc GetById(GetPersonByIdRequest) returns (GetPersonByIdResponse);
+    rpc Create(CreatePersonRequest) returns (CreatePersonResponse);
+    rpc Update(UpdatePersonRequest) returns (UpdatePersonResponse);
+    rpc Delete(DeletePersonRequest) returns (DeletePersonResponse);
+}
+
+message GetAllPeopleRequest{}
+
+message GetPersonByIdRequest{
+    int32 id = 1;
+}
+
+message CreatePersonRequest {
+    string name = 1;
+    string area_code = 2;
+    string phone = 3;
+    string email = 4;
+    int32 ufId = 5;
+}
+
+message UpdatePersonRequest {
+    int32 id = 1;
+    string name = 2;
+    string area_code = 3;
+    string phone = 4;
+    string email = 5;
+    int32 ufId = 6;
+}
+
+message DeletePersonRequest{
+    int32 id = 1;
+}
+
+
+message Person {
+    int32 id = 1;
+    string name = 2;
+    string area_code = 3;
+    string phone = 4;
+    string email = 5;
+    PersonUF uf = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message PersonUF {
+    int32 id = 1;
+    string name = 2;
+}
+
+message GetAllPeopleResponse {
+    repeated Person data = 1;
+}
+
+message GetPersonByIdResponse {
+    Person person = 1;
+}
+
+message CreatePersonResponse {
+    int32 id = 1;
+}
+
+message UpdatePersonResponse{}
+
+message DeletePersonResponse{}
+
+
+
+

@@ -18,12 +18,12 @@ message GetUFByIdRequest{
 }
 
 message CreateUFRequest {
-    string nome = 1;
+    string name = 1;
 }
 
 message UpdateUFRequest {
     int32 id = 1;
-    string nome = 2;
+    string name = 2;
 }
 
 message DeleteUFRequest{
@@ -32,8 +32,8 @@ message DeleteUFRequest{
 
 message UF {
     int32 id = 1;
-    string nome = 2;
-    int32 num_pessoas = 3;
+    string name = 2;
+    int32 people_count = 3;
     string created_at = 4;
     string updated_at = 5;
 }
