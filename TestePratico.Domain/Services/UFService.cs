@@ -22,7 +22,7 @@ namespace TestePratico.Domain.Services
             if (obj.People.Count > 0 || obj.PeopleCount > 0)
             {
                 result = new ValidationResult();
-                result.Add("", "This UF can't be deleted becuase it has people associated with it.");
+                result.Add("", "This UF can't be deleted because it has people associated with it.");
             }
             else
             {
