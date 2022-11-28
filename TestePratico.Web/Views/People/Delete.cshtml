@@ -1,20 +1,20 @@
 ﻿@model TestePratico.Web.ViewModels.PersonViewModel
 
 @{
-    ViewData["Title"] = "Excluir Pessoa";
+    ViewData["Title"] = "Delete Person";
 }
 
-<h2>Excluir Pessoa</h2>
+<h2>Delete Person</h2>
 
-<h3>Tem certeza que deseja excluir esta pessoa?</h3>
+<h3>Are you sure you want to delete this person?</h3>
 <div>
     <partial name="_Display" for="@Model"></partial>
 
     <form asp-controller="Pessoas" asp-action="Delete" method="post">
         <div class="form-actions no-color">
-            <button type="submit" class="btn btn-secondary">Confirmar Exclusão</button>
+            <button type="submit" class="btn btn-secondary">Confirm</button>
             &nbsp;
-            <a asp-action="Index" class="btn btn-primary">Voltar</a>
+            <a asp-action="Index" class="btn btn-primary">Back</a>
         </div>
     </form>
 </div>

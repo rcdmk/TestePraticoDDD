@@ -22,7 +22,7 @@ internal class Program
         builder.Services.AddScoped<IUFRepository, UFRepository>();
         builder.Services.AddScoped<IPersonService, PersonService>();
         builder.Services.AddScoped<IUFService, UFService>();
-        builder.Services.AddScoped<IPessoaAppService, PessoaAppService>();
+        builder.Services.AddScoped<IPersonAppService, PersonAppService>();
         builder.Services.AddScoped<IUFAppService, UFAppService>();
 
         builder.Services.AddDbContext<TestePraticoContext>(opts =>

@@ -2,9 +2,7 @@
 using AutoMapper;
 using TestePratico.Domain.Entities;
 using TestePratico.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TestePratico.Application.Interfaces;
-using System.Collections.Generic;
 
 namespace TestePratico.Web.Controllers
 {

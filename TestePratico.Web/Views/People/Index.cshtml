@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-	<a asp-action="Create" class="btn btn-primary">Criar</a>
+	<a asp-action="Create" class="btn btn-primary">Create</a>
 </p>
 <table class="table table-bordered table-striped">
 	<tr>
@@ -68,9 +68,9 @@
 					@Html.DisplayFor(modelItem => item.UpdatedAt)
 				</td>
 				<td class="text-center">
-					<a asp-action="Edit" asp-route-id="@item.PersonId">Editar</a> |
-					<a asp-action="Details" asp-route-id="@item.PersonId">Detalhes</a> |
-					<a asp-action="Delete" asp-route-id="@item.PersonId">Excluir</a>
+					<a asp-action="Edit" asp-route-id="@item.PersonId">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.PersonId">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.PersonId">Delete</a>
 				</td>
 			</tr>
 		}
@@ -78,7 +78,7 @@
 	else
 	{
 		<tr>
-			<td colspan="7" class="text-muted text-center">Nenhum registro cadastrado.</td>
+			<td colspan="7" class="text-muted text-center">No record found.</td>
 		</tr>
 	}
 </table>
