@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using TestePratico.Domain.Entities.Validation;
+using TestePratico.Domain.Validation;
 
 namespace TestePratico.Domain.Entities
 {
@@ -7,7 +8,9 @@ namespace TestePratico.Domain.Entities
     {
         public UF() : this(0, "") { }
 
-        public UF(int UFId, string name) : base(new UFValidator())
+        public UF(int UFId, string name) : this(UFId, name, new UFValidator()) { }
+
+        public UF(int UFId, string name, Validator<UF> validator) : base(validator)
         {
             this.UFId = UFId;
             this.Name = name;
