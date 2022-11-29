@@ -1,16 +1,16 @@
-﻿@model TestePratico.Web.ViewModels.UFViewModel
+﻿@model TestePratico.Web.ViewModels.PersonViewModel
 
 @{
-    ViewData["Title"] = "Excluir UF";
+    ViewData["Title"] = "Delete Person";
 }
 
-<h2>Delete UF</h2>
+<h2>Delete Person</h2>
 
-<h3>Are you sure you want to delete this UF?</h3>
+<h3>Are you sure you want to delete this person?</h3>
 <div>
     <partial name="_Display" for="@Model"></partial>
 
-    <form asp-controller="UFs" asp-action="Delete" method="post">
+    <form asp-controller="Pessoas" asp-action="Delete" method="post">
         <div class="form-actions no-color">
             <button type="submit" class="btn btn-secondary">Confirm</button>
             &nbsp;

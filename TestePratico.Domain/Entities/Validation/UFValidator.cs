@@ -12,8 +12,8 @@ namespace TestePratico.Domain.Entities.Validation
     {
         public UFValidator()
         {
-            AddRule(new ValidationRule<UF>(new UFPrecisaTerUmNomeDefinidoSpec(), "É obrigatório informar um nome"));
-            AddRule(new ValidationRule<UF>(new UFPrecisaTerUmNomeEntre2e50Caracteres(), "O nome precisa ter entre 2 e 50 caracteres"));
+            AddRule(new ValidationRule<UF>(new UFMustHaveANameDefinedSpec(), "It's required to provide a name"));
+            AddRule(new ValidationRule<UF>(new UFMustHaveANameBetween2and50CharactersLongSpec(), "Name must be between 2 and 50 characters long"));
         }
     }
 }

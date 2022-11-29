@@ -1,10 +1,10 @@
-﻿@model TestePratico.Web.ViewModels.PessoaViewModel
+﻿@model TestePratico.Web.ViewModels.PersonViewModel
 
 @{
-    ViewData["Title"] = "Criar Pessoa";
+    ViewData["Title"] = "Create Person";
 }
 
-<h2>Criar Pessoa</h2>
+<h2>Create Person</h2>
 
 <form asp-controller="Pessoas" asp-action="Create" method="post">
     <partial name="_Form" for="@Model"></partial>

@@ -5,45 +5,45 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TestePratico.Web.ViewModels
 {
-    public class PessoaViewModel
+    public class PersonViewModel
     {
-        public PessoaViewModel() : this(0, "") { }
+        public PersonViewModel() : this(0, "") { }
 
-        public PessoaViewModel(int pessoaId, string nome)
+        public PersonViewModel(int personId, string name)
         {
-            this.PessoaId = pessoaId;
-            this.Nome = nome;
+            this.PersonId = personId;
+            this.Name = name;
         }
 
         [Key]
-        public int PessoaId { get; set; }
+        public int PersonId { get; set; }
 
         [Required]
         [MinLength(2)]
         [MaxLength(150)]
-        public string Nome { get; set; }
+        public string Name { get; set; }
 
-        [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime? DataNascimento { get; set; }
+        public DateTime? Birthdate { get; set; }
 
+        [Display(Name = "Area Code")]
         [MinLength(2)]
         [MaxLength(2)]
         [Phone]
-        public string? DDD { get; set; }
+        public string? AreaCode { get; set; }
 
         [MinLength(8)]
         [MaxLength(10)]
         [Phone]
-        public string? Telefone { get; set; }
+        public string? Phone { get; set; }
 
         [MinLength(4)]
         [MaxLength(150)]
         [EmailAddress]
         public string? Email { get; set; }
 
-        [Display(Name = "Estado")]
+        [Display(Name = "State")]
         public int? UFId { get; set; }
 
         [Editable(false)]
@@ -54,11 +54,11 @@ namespace TestePratico.Web.ViewModels
         [ValidateNever]
         public virtual IList<SelectListItem>? UFs { get; set; }
 
-        [Display(Name = "Criação")]
+        [Display(Name = "Created")]
         [Editable(false)]
         public DateTime CreatedAt { get; private set; }
 
-        [Display(Name = "Últ. Atualização")]
+        [Display(Name = "Last Update")]
         [Editable(false)]
         public DateTime UpdatedAt { get; private set; }
     }

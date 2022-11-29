@@ -7,15 +7,15 @@
 <h2>UFs</h2>
 
 <p>
-	<a asp-action="Create" class="btn btn-primary">Criar</a>
+	<a asp-action="Create" class="btn btn-primary">Create</a>
 </p>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(m => m.Nome)
+			@Html.DisplayNameFor(m => m.Name)
 		</th>
 		<th>
-			@Html.DisplayNameFor(m => m.NumPessoas)
+			@Html.DisplayNameFor(m => m.PeopleCount)
 		</th>
 		<th>
 			@Html.DisplayNameFor(m => m.First().CreatedAt)
@@ -32,10 +32,10 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.Nome)
+					@Html.DisplayFor(modelItem => item.Name)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.NumPessoas)
+					@Html.DisplayFor(modelItem => item.PeopleCount)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.CreatedAt)
@@ -44,9 +44,9 @@
 					@Html.DisplayFor(modelItem => item.UpdatedAt)
 				</td>
 				<td>
-					@Html.ActionLink("Editar", "Edit", new { id = item.UFId }) |
-					@Html.ActionLink("Detailhes", "Details", new { id = item.UFId }) |
-					@Html.ActionLink("Excluir", "Delete", new { id = item.UFId })
+					<a asp-action="Edit" asp-route-id="@item.UFId">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.UFId">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.UFId">Delete</a>
 				</td>
 			</tr>
 		}
@@ -54,7 +54,7 @@
 	else
 	{
 		<tr>
-			<td colspan="7" class="text-muted text-center">Nenhum registro cadastrado.</td>
+			<td colspan="7" class="text-muted text-center">No record found.</td>
 		</tr>
 	}
 

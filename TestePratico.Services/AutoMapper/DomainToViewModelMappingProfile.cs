@@ -7,9 +7,9 @@ namespace TestePratico.Services.AutoMapper
     {
         public DomainToViewModelMappingProfile() : base(nameof(DomainToViewModelMappingProfile))
         {
-            CreateMap<Domain.Entities.Pessoa, Services.Pessoa>();
+            CreateMap<Domain.Entities.Person, Services.Person>();
 
-            CreateMap<Domain.Entities.UF, Services.PessoaUF>();
+            CreateMap<Domain.Entities.UF, Services.PersonUF>();
             CreateMap<Domain.Entities.UF, Services.UF>();
 
             this.Internal().ForAllMaps((typeMap, mappingExpression) =>

@@ -1,38 +1,38 @@
-@model TestePratico.Web.ViewModels.PessoaViewModel
+@model TestePratico.Web.ViewModels.PersonViewModel
 
 <div class="form-horizontal">
-    <h4>Dados</h4>
+    <h4>Data</h4>
     <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="Nome" class="form-label col-md-2"></label>
+        <label asp-for="Name" class="form-label col-md-2"></label>
         <div class="col-md-10">
-            <input asp-for="Nome" class="form-control" />
-            <span asp-validation-for="Nome" class="text-danger"></span>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="DataNascimento" class="form-label col-md-2"></label>
+        <label asp-for="Birthdate" class="form-label col-md-2"></label>
         <div class="col-md-10">
-            <input asp-for="DataNascimento" class="form-control" />
-            <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            <input asp-for="Birthdate" class="form-control" />
+            <span asp-validation-for="Birthdate" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="DDD" class="form-label col-md-2"></label>
+        <label asp-for="AreaCode" class="form-label col-md-2"></label>
         <div class="col-md-1">
-            <input asp-for="DDD" class="form-control" />
-            <span asp-validation-for="DDD" class="text-danger"></span>
+            <input asp-for="AreaCode" class="form-control" />
+            <span asp-validation-for="AreaCode" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="Telefone" class="form-label col-md-2"></label>
+        <label asp-for="Phone" class="form-label col-md-2"></label>
         <div class="col-md-10">
-            <input asp-for="Telefone" class="form-control" />
-            <span asp-validation-for="Telefone" class="text-danger"></span>
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
         </div>
     </div>
 
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    @if (Model.PessoaId > 0)
+    @if (Model.PersonId > 0)
     {
         <div class="form-group">
             <label asp-for="CreatedAt" class="form-label col-md-2"></label>
@@ -75,10 +75,10 @@
 
     <div class="form-group row pt-3">
         <div class="col-md-offset-2 col-md-1">
-            <input type="submit" value="Gravar" class="btn btn-secondary" />
+            <input type="submit" value="Save" class="btn btn-secondary" />
         </div>
         <div class="col-md-1">
-            <a asp-action="Index" class="btn btn-primary">Voltar</a>
+            <a asp-action="Index" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

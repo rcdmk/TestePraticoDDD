@@ -12,7 +12,7 @@ namespace TestePratico.Data.EntityConfig
 
             builder.ToTable("UFs");
 
-            builder.Property(u => u.Nome)
+            builder.Property(u => u.Name)
                 .IsRequired()
                 .HasMaxLength(50);
 
@@ -20,7 +20,7 @@ namespace TestePratico.Data.EntityConfig
             builder.Ignore(u => u.IsValid);
 
             builder.HasData(new[]{
-                new UF(UFId: 1, nome: "SP")
+                new UF(UFId: 1, name: "SP")
             });
         }
     }

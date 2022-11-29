@@ -6,8 +6,8 @@ namespace TestePratico.Data.Context
 {
     public class TestePraticoContext : DbContext
     {
-        public DbSet<Pessoa> Pessoas { get; set; } = null!;
-        public DbSet<UF> UF { get; set; } = null!;
+        public DbSet<Person> People { get; set; } = null!;
+        public DbSet<UF> UFs { get; set; } = null!;
 
         protected TestePraticoContext()
         {
@@ -25,7 +25,7 @@ namespace TestePratico.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PessoaConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonConfiguration());
             modelBuilder.ApplyConfiguration(new UFConfiguration());
         }
 

@@ -8,6 +8,7 @@ using TestePratico.Domain.Interfaces.Services;
 using TestePratico.Domain.Services;
 using TestePratico.Services;
 
+#region DI setup
 var builder = WebApplication.CreateBuilder(args);
 
 // Additional configuration is required to successfully run gRPC on macOS.
@@ -25,11 +26,11 @@ builder.Services.AddGrpcReflection();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IUFRepository, UFRepository>();
-builder.Services.AddScoped<IPessoaService, PessoaService>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IUFService, UFService>();
-builder.Services.AddScoped<IPessoaAppService, PessoaAppService>();
+builder.Services.AddScoped<IPersonAppService, PersonAppService>();
 builder.Services.AddScoped<IUFAppService, UFAppService>();
 
 builder.Services.AddDbContextPool<TestePraticoContext>(opts =>
@@ -46,6 +47,7 @@ builder.Services.AddDbContextPool<TestePraticoContext>(opts =>
         .EnableDetailedErrors();
     }
 });
+#endregion
 
 var app = builder.Build();
 
@@ -55,7 +57,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Configure the HTTP request pipeline.
-app.MapGrpcService<PessoasService>();
+app.MapGrpcService<PeopleService>();
 app.MapGrpcService<UFsService>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 

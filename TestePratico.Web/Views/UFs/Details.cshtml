@@ -1,7 +1,7 @@
 ﻿@model TestePratico.Web.ViewModels.UFViewModel
 
 @{
-    ViewData["Title"] = "Details: " + Model.Nome;
+    ViewData["Title"] = "Details: " + Model.Name;
 }
 
 <h2>Details</h2>
@@ -10,7 +10,7 @@
     <partial name="_Display" for="@Model"></partial>
 </div>
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.UFId" class="btn btn-secondary">Editar</a>
+    <a asp-action="Edit" asp-route-id="@Model.UFId" class="btn btn-secondary">Edit</a>
     &nbsp;
-    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    <a asp-action="Index" class="btn btn-primary">Back</a>
 </p>

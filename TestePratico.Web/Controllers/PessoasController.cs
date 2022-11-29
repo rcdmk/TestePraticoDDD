@@ -3,41 +3,39 @@ using AutoMapper;
 using TestePratico.Domain.Entities;
 using TestePratico.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TestePratico.Application.Interfaces;
-using System.Collections.Generic;
 
 namespace TestePratico.Web.Controllers
 {
-    public class PessoasController : Controller
+    public class PeopleController : Controller
     {
-        private readonly IPessoaAppService pessoaService;
+        private readonly IPersonAppService personService;
         private readonly IUFAppService ufService;
         private readonly IMapper Mapper;
 
-        public PessoasController(IMapper mapper, IPessoaAppService pessoaService, IUFAppService ufService)
+        public PeopleController(IMapper mapper, IPersonAppService personService, IUFAppService ufService)
         {
             this.Mapper = mapper;
-            this.pessoaService = pessoaService;
+            this.personService = personService;
             this.ufService = ufService;
         }
 
-        // GET: Pessoas
+        // GET: People
         public ActionResult Index()
         {
-            var pessoas = Mapper.Map<IEnumerable<PessoaViewModel>>(pessoaService.GetAll());
+            var people = Mapper.Map<IEnumerable<PersonViewModel>>(personService.GetAll());
 
-            return View(pessoas);
+            return View(people);
         }
 
-        // GET: Pessoas/Details/5
+        // GET: People/Details/5
         public ActionResult Details(int id)
         {
-            var pessoa = getViewModelById(id);
+            var person = getViewModelById(id);
 
-            if (pessoa != null)
+            if (person != null)
             {
-                return View(pessoa);
+                return View(person);
             }
             else
             {
@@ -45,28 +43,28 @@ namespace TestePratico.Web.Controllers
             }
         }
 
-        // GET: Pessoas/Create
+        // GET: People/Create
         public ActionResult Create()
         {
-            var pessoa = new PessoaViewModel();
-            pessoa.UFs = getUFList();
+            var person = new PersonViewModel();
+            person.UFs = getUFList();
 
-            return View(pessoa);
+            return View(person);
         }
 
-        // POST: Pessoas/Create
+        // POST: People/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PessoaViewModel pessoa)
+        public ActionResult Create(PersonViewModel person)
         {
             if (ModelState.IsValid)
             {
-                var pessoaDomain = Mapper.Map<Pessoa>(pessoa);
-                var result = pessoaService.Add(pessoaDomain);
+                var personEntity = Mapper.Map<Person>(person);
+                var result = personService.Add(personEntity);
 
                 if (result.IsValid)
                 {
-                    pessoaService.SaveChanges();
+                    personService.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
@@ -78,19 +76,19 @@ namespace TestePratico.Web.Controllers
                 }
             }
 
-            pessoa.UFs = getUFList();
-            return View(pessoa);
+            person.UFs = getUFList();
+            return View(person);
         }
 
-        // GET: Pessoas/Edit/5
+        // GET: People/Edit/5
         public ActionResult Edit(int id)
         {
-            var pessoa = getViewModelById(id);
+            var person = getViewModelById(id);
 
-            if (pessoa != null)
+            if (person != null)
             {
-                pessoa.UFs = getUFList();
-                return View(pessoa);
+                person.UFs = getUFList();
+                return View(person);
             }
             else
             {
@@ -98,24 +96,24 @@ namespace TestePratico.Web.Controllers
             }
         }
 
-        // POST: Pessoas/Edit/5
+        // POST: People/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PessoaViewModel pessoa)
+        public ActionResult Edit(PersonViewModel person)
         {
             if (ModelState.IsValid)
             {
-                var existingPessoa = pessoaService.GetById(pessoa.PessoaId);
-                if (existingPessoa == null) return NotFound();
+                var existingPerson = personService.GetById(person.PersonId);
+                if (existingPerson == null) return NotFound();
 
-                var pessoaDomain = Mapper.Map(pessoa, existingPessoa);
-                var result = pessoaService.Update(pessoaDomain);
+                var personEntity = Mapper.Map(person, existingPerson);
+                var result = personService.Update(personEntity);
 
                 if (result.IsValid)
                 {
                     try
                     {
-                        pessoaService.SaveChanges();
+                        personService.SaveChanges();
                         return RedirectToAction("Index");
                     }
                     catch (Exception ex)
@@ -132,38 +130,38 @@ namespace TestePratico.Web.Controllers
                 }
             }
 
-            pessoa.UFs = getUFList();
-            return View(pessoa);
+            person.UFs = getUFList();
+            return View(person);
         }
 
-        // GET: Pessoas/Delete/5
+        // GET: People/Delete/5
         public ActionResult Delete(int id)
         {
-            var pessoa = getViewModelById(id);
+            var person = getViewModelById(id);
 
-            if (pessoa != null)
+            if (person != null)
             {
-                return View(pessoa);
+                return View(person);
             }
 
             return NotFound();
         }
 
-        // POST: Pessoas/Delete/5
+        // POST: People/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var pessoa = pessoaService.GetById(id);
+            var person = personService.GetById(id);
 
-            if (pessoa == null) return NotFound();
+            if (person == null) return NotFound();
 
-            var result = pessoaService.Remove(pessoa);
+            var result = personService.Remove(person);
 
             if (result.IsValid)
             {
-                pessoaService.SaveChanges();
+                personService.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -181,9 +179,9 @@ namespace TestePratico.Web.Controllers
 
         #region helpers
 
-        PessoaViewModel getViewModelById(int id)
+        PersonViewModel getViewModelById(int id)
         {
-            return Mapper.Map<PessoaViewModel>(pessoaService.GetById(id));
+            return Mapper.Map<PersonViewModel>(personService.GetById(id));
         }
 
         IList<SelectListItem> getUFList()

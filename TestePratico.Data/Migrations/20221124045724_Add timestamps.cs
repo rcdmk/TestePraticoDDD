@@ -26,14 +26,14 @@ namespace TestePratico.Data.Migrations
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "CreatedAt",
-                table: "Pessoas",
+                table: "People",
                 type: "TIMESTAMP",
                 nullable: false)
                 .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "UpdatedAt",
-                table: "Pessoas",
+                table: "People",
                 type: "TIMESTAMP",
                 nullable: false)
                 .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn);
@@ -51,11 +51,11 @@ namespace TestePratico.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "CreatedAt",
-                table: "Pessoas");
+                table: "People");
 
             migrationBuilder.DropColumn(
                 name: "UpdatedAt",
-                table: "Pessoas");
+                table: "People");
         }
     }
 }

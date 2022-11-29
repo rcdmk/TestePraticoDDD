@@ -7,26 +7,26 @@ namespace TestePratico.Domain.Entities
     {
         public UF() : this(0, "") { }
 
-        public UF(int UFId, string nome) : base(new UFValidator())
+        public UF(int UFId, string name) : base(new UFValidator())
         {
             this.UFId = UFId;
-            this.Nome = nome;
-            this.Pessoas = new List<Pessoa>();
-            this.NumPessoas = 0;
+            this.Name = name;
+            this.People = new List<Person>();
+            this.PeopleCount = 0;
         }
 
         public int UFId { get; set; }
 
-        public string Nome { get; set; }
+        public string Name { get; set; }
 
         [NotMapped]
-        public virtual int NumPessoas { get; set; }
+        public virtual int PeopleCount { get; set; }
 
-        public virtual IList<Pessoa> Pessoas { get; set; }
+        public virtual IList<Person> People { get; set; }
 
-        public UF WithNumPessoas(int numPessoas)
+        public UF WithPeopleCount(int count)
         {
-            this.NumPessoas = numPessoas;
+            this.PeopleCount = count;
             return this;
         }
     }

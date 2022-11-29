@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -19,7 +18,7 @@ namespace TestePratico.Data.Migrations
                 {
                     UFId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -29,17 +28,17 @@ namespace TestePratico.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Pessoas",
+                name: "People",
                 columns: table => new
                 {
-                    PessoaId = table.Column<int>(type: "int", nullable: false)
+                    PersonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false)
+                    Name = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataNascimento = table.Column<DateOnly>(type: "date", nullable: true),
-                    DDD = table.Column<string>(type: "varchar(2)", unicode: false, maxLength: 2, nullable: false)
+                    Birthdate = table.Column<DateOnly>(type: "date", nullable: true),
+                    AreaCode = table.Column<string>(type: "varchar(2)", unicode: false, maxLength: 2, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Telefone = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false)
+                    Phone = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -47,9 +46,9 @@ namespace TestePratico.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pessoas", x => x.PessoaId);
+                    table.PrimaryKey("PK_People", x => x.PersonId);
                     table.ForeignKey(
-                        name: "FK_Pessoas_UFs_UFId",
+                        name: "FK_People_UFs_UFId",
                         column: x => x.UFId,
                         principalTable: "UFs",
                         principalColumn: "UFId");
@@ -58,19 +57,19 @@ namespace TestePratico.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "UFs",
-                columns: new[] { "UFId", "Nome" },
+                columns: new[] { "UFId", "Name" },
                 values: new object[] { 1, "SP" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pessoas_UFId",
-                table: "Pessoas",
+                name: "IX_People_UFId",
+                table: "People",
                 column: "UFId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pessoas");
+                name: "People");
 
             migrationBuilder.DropTable(
                 name: "UFs");
