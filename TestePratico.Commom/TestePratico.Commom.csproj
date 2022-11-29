@@ -9,7 +9,4 @@
     <ProjectReference Include="..\TestePratico.Data\TestePratico.Data.csproj" />
     <ProjectReference Include="..\TestePratico.Domain\TestePratico.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Ninject" Version="3.3.6"/>
-  </ItemGroup>
 </Project>
