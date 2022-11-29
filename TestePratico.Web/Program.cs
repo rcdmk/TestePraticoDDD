@@ -1,11 +1,6 @@
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Ninject;
-using Ninject.Web.AspNetCore;
 using TestePratico.Application;
 using TestePratico.Application.Interfaces;
-using TestePratico.Commom.Ninject;
 using TestePratico.Data.Context;
 using TestePratico.Data.Repositories;
 using TestePratico.Domain.Interfaces;
@@ -16,21 +11,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // var hostConfiguration = new AspNetCoreHostConfiguration(args)
-        //         .UseStartup<Startup>()
-        //         .UseKestrel()
-        //         .BlockOnStart();
-
-        // var host = new NinjectSelfHostBootstrapper(CreateKernel, hostConfiguration);
-        // host.Start();
-
-        // return;
-
-
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddNinject(CreateKernel());
 
         // Add services to the container.
+        #region DI setup
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         builder.Services.AddControllersWithViews();
 
@@ -55,6 +39,7 @@ internal class Program
                 .EnableDetailedErrors();
             }
         });
+        #endregion
 
         var app = builder.Build();
 
@@ -78,30 +63,5 @@ internal class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
-    }
-
-    public static AspNetCoreKernel CreateKernel()
-    {
-        var settings = new NinjectSettings();
-        // Unfortunately, in .NET Core projects, referenced NuGet assemblies are not copied to the output directory
-        // in a normal build which means that the automatic extension loading does not work _reliably_ and it is
-        // much more reasonable to not rely on that and load everything explicitly.
-        //settings.LoadExtensions = false;
-
-        var kernel = new AspNetCoreKernel(settings);
-        //kernel.DisableAutomaticSelfBinding();
-
-        //kernel.Load(typeof(AspNetCoreHostConfiguration).Assembly);
-        kernel.Load(Assembly.GetExecutingAssembly());
-        kernel.Load(ModuleHelper.GetModules());
-
-        kernel.Bind<Lazy<IModelMetadataProvider>>().ToMethod(x =>
-             new Lazy<IModelMetadataProvider>(() => x.Kernel.Get<IModelMetadataProvider>()));
-
-        // kernel.Bind<HomeController>().ToSelf().InRequestScope();
-        // kernel.Bind<PessoasController>().ToSelf().InRequestScope();
-        // kernel.Bind<UFsController>().ToSelf().InRequestScope();
-
-        return kernel;
     }
 }

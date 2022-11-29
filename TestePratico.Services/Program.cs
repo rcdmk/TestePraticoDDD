@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TestePratico.Application;
 using TestePratico.Application.Interfaces;
 using TestePratico.Data.Context;
@@ -6,7 +7,6 @@ using TestePratico.Domain.Interfaces;
 using TestePratico.Domain.Interfaces.Services;
 using TestePratico.Domain.Services;
 using TestePratico.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
