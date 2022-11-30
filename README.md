@@ -34,7 +34,7 @@ Dependencies are managed through the `dotnet` command-line tool and all of them 
 make deps
 ```
 
-That also includes downloading
+That also includes downloading MySQL 8 docker image to make sure docker is correctly setup and speedup other steps.
 
 ## Preparing the database
 
@@ -93,3 +93,53 @@ make start-services
 ```sh
 make tests
 ```
+
+## Application settings
+
+Application settings are stored in `appsettings.json` files, with environment specific settings on `appsettings.${environment}.json` (eg: `appsettings.Development.json`).
+
+## Project structure
+
+The project structure is inspired on DDD (Domain Driven Design) approach, with layered or onion architecture, having the outer-most layers depending on inner-most layers and never the other way around.
+
+The layers, presented in order of inner-most to outer-most:
+
+### TestePratico.Domain
+
+The most central layer, where business logic should live, is the `Domain` layer. This layer houses business entities, main data interfaces and the domain services, which are responsible for business logic.
+
+This project should't depend on any other layer to have pure domain specific logic.
+
+### TestePratico.Data
+
+The `Data` layer, where the storage related code lies, with the respository implementations, entity configuration and migrations for EntityFramework.
+
+This layer depends on the `Domain` layer and possibly `Common`.
+
+### TestePratico.Application
+
+The `Application` layer contains the common application logic in application services that consume domain services to perform its operations. This layer is meant to be reused by any application that is built on top of the inner layers, like web applications, APIs, gRPC services or command-line interfaces.
+
+This layer depends on the `Domain` layer and possibly `Common`. Although it works with repositories, it relies on interfaces and not the implementations from the `Data` layer.
+
+### TestePratico.Services
+
+The `Services` layer is an example of gRPC server application that makes use of the `Application` services to perform CRUD operations.
+
+In development mode, this server offers server reflection to make it easier to test it with gRPC enalbed tools, like Postman.
+
+It's protobuf definitions are stored in the `TestePratico.Services/Protos` folder and can be used to generate client applications for it.
+
+This layer depends on `Domain`, `Application` and possibly `Common` layers.
+
+### TestePratico.Web
+
+The `Web` application layer is an example of UI application that is built on top of the `Application` services layer to perform CRUD operations on entities, using an MVC project structure for proper separation of concerns and easy maintainability.
+
+This layer depends on `Domain`, `Application` and possibly `Common` layers.
+
+### TestePratico.Common
+
+The `Common` cross-cutting concerns layer, where all logic that is not domain-specific and can be used in multiple layers should reside. Things like custom libraries, IoC/DI mappings, loggers, wrappers for utility tools, etc., must be implemented in this project.
+
+This layer shouldn't depend on other layers, but the `Domain` one, to avoid cyclic dependency issues.
