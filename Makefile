@@ -3,9 +3,14 @@ SERVICES_PROJECT := TestePratico.Services
 DATA_PROJECT := TestePratico.Data
 MIGRATION_NAME :=
 
-.PHONY: echo
-echo:
-	@echo "MIGRATION_NAME: $(MIGRATION_NAME)";
+.PHONY: deps
+deps:
+	dotnet tool install --global dotnet-ef
+	dotnet restore
+	docker-compose pull
+
+.PHONY: start-database
+	docker-compose up -d
 
 .PHONY: start-web
 start-web:
