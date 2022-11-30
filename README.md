@@ -13,6 +13,18 @@ This project uses many development patterns as learning model:
 * Makefile - Easier to remember commands to execute common tasks
 * ... (more to come)
 
+## History
+
+This was originally built on .Net Framework 4.5, for Windows only, in 2015 and now ported to .Net Core 6.0 in 2022.
+
+The major changes from the original project, appart from the obvious upgrades related to .Net Core, are:
+
+1. **Ninject was removed** in favor of the existing .Net Core DI framework, as the use case is simple enough to be handled with that
+2. **Added some tests** with xUnit to cover main domain logic
+3. **Services layer was changed to gRPC** services instead of the previous WPF services
+4. **Added Makefile** to streameline most common project tasks
+5. **Added docker-compose.yml** for running additional services, like the MySQL 8 database server
+
 ## Prerequisites
 
 * [dotnet 6.0+ command-line tool](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
