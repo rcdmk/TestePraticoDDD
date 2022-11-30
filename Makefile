@@ -10,6 +10,7 @@ deps:
 	docker-compose pull
 
 .PHONY: start-database
+start-database:
 	docker-compose up -d
 
 .PHONY: start-web
